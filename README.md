@@ -18,7 +18,7 @@ Ikuti langkah-langkah di bawah ini untuk menjalankan proyek di komputer lokal An
 1.  **Clone repositori:**
 
     ```bash
-    git clone <repo-url>
+    git clone https://github.com/yafaiky/landpage-company-profile.git
     cd landpage-company-profile
     ```
 
