@@ -129,7 +129,7 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative overflow-hidden bg-[#0a0b09] py-24 md:py-36 px-6 lg:px-12"
+      className="relative overflow-hidden bg-[#0a0b09] py-24 md:py-36"
     >
       {/* Ambient blobs */}
       <div
@@ -214,7 +214,7 @@ export default function ServicesSection() {
                     {/* Text */}
                     <div className="flex-1 min-w-0">
                       <h3
-                        className="text-lg md:text-2xl font-bold text-[var(--white)] mb-1 transition-colors duration-300 group-hover:text-[var(--white)]"
+                        className="text-sm md:text-lg font-bold text-[var(--white)] mb-1 transition-colors duration-300 group-hover:text-[var(--white)]"
                       >
                         {svc.title}
                       </h3>
@@ -222,7 +222,7 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Price Badge */}
-                    <div className="hidden md:flex flex-col items-end shrink-0 mr-2">
+                    <div className="hidden md:flex flex-col items-end shrink-0">
                       <span
                         className="text-lg md:text-xl font-black tracking-tight transition-colors duration-300"
                         style={{ color: svc.accent }}
@@ -234,21 +234,19 @@ export default function ServicesSection() {
                       </span>
                     </div>
 
-                    {/* Toggle Arrow */}
+                    {/* Dropdown Icon */}
                     <div
-                      className="shrink-0 w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500"
+                      className="shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-500"
                       style={{
-                        background: isOpen ? svc.accent : 'transparent',
-                        borderColor: isOpen ? svc.accent : 'rgba(248,248,242,0.12)',
-                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                        color: isOpen ? '#0a0b09' : 'rgba(248,248,242,0.5)',
+                        transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+                        color: isOpen ? svc.accent : 'rgba(248,248,242,0.2)',
                       }}
                     >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9l6 6 6-6" />
                       </svg>
                     </div>
+
                   </div>
 
                   {/* Expandable Detail */}

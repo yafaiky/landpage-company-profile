@@ -78,11 +78,17 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <a 
-          href="/" 
-          className="relative z-[60] font-black text-lg tracking-widest text-white uppercase"
+        <a
+          href="/"
+          className="relative z-[60] flex items-center gap-2 group"
+          style={{ fontFamily: "'Outfit', sans-serif" }}
         >
-          byvisco<span className="text-[#8fff3a]"> creative</span>
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-white transition-colors duration-300 group-hover:text-[#8fff3a]">
+            BYVISCO
+          </span>
+          <span className="inline-block text-[8px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-black text-[#0a0b09] bg-[#8fff3a] px-1.5 md:px-2 py-0.5 rounded-[3px] md:rounded-[4px] transform translate-y-[-1px]">
+            CREATIVE
+          </span>
         </a>
 
         {/* Hamburger Button */}

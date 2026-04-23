@@ -21,7 +21,7 @@
 
   /* Typography */
   --font-main: 'Inter Variable', 'Inter', sans-serif;
-  --font-display: 'Satoshi', 'General Sans', sans-serif;
+  --font-display: 'Outfit', 'Satoshi', 'General Sans', sans-serif;
 
   /* Smooth Easing */
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
@@ -51,7 +51,7 @@
 /* ─── Components ─────────────────────────────────── */
 @layer components {
   .container {
-    @apply max-w-7xl mx-auto px-6 lg:px-12;
+    @apply max-w-7xl mx-auto px-4 lg:px-8;
   }
 
   .section-pad {

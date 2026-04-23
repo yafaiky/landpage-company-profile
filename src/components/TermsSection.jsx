@@ -160,7 +160,7 @@ export default function TermsSection() {
     <section
       ref={sectionRef}
       id="terms"
-      className="relative overflow-hidden bg-[#11120f] py-24 md:py-36 px-6 lg:px-12"
+      className="relative overflow-hidden bg-[#11120f] py-24 md:py-36"
     >
       {/* Ambient blob */}
       <div

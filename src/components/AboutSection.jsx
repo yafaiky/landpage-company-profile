@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -60,6 +60,7 @@ export default function AboutSection() {
   const svcRef = useRef([])
   const vmRef = useRef([])
   const dividerRef = useRef(null)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -128,7 +129,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative overflow-hidden bg-zinc-950 py-24 md:py-32 px-6 lg:px-12"
+      className="relative overflow-hidden bg-zinc-950 py-24 md:py-32 px-4 lg:px-8"
     >
       {/* Subtle green ambient blob */}
       <div
@@ -149,7 +150,18 @@ export default function AboutSection() {
               <span className="text-[#8fff3a]">Lorem ipsum dolor sit amet consectetur.</span>
             </h2>
             <p ref={bodyRef} className="text-zinc-400 text-lg leading-relaxed max-w-[44ch]">
-              Byvisco adalah creative agency berbasis di Jakarta Timur yang berfokus pada branding, visual identity, dan konten kreatif untuk UMKM dan bisnis lokal. Kami percaya bahwa setiap bisnis — sekecil apapun — berhak tampil profesional dan punya identitas yang kuat. Didukung oleh tim muda berpengalaman di industri media dan produksi, kami siap menjadi mitra kreatif jangka panjang bisnis kamu.
+              Byvisco adalah creative agency berbasis di Jakarta Timur yang berfokus pada branding, visual identity, dan konten kreatif untuk UMKM dan bisnis lokal.
+              <span className={isExpanded ? 'inline' : 'hidden md:inline'}>
+                {" "}Kami percaya bahwa setiap bisnis — sekecil apapun — berhak tampil profesional dan punya identitas yang kuat. Didukung oleh tim muda berpengalaman di industri media dan produksi, kami siap menjadi mitra kreatif jangka panjang bisnis kamu.
+              </span>
+              {!isExpanded && (
+                <button
+                  onClick={() => setIsExpanded(true)}
+                  className="md:hidden text-[#8fff3a] font-semibold ml-1 hover:text-[#7ee634] transition-colors"
+                >
+                  ... Baca Selengkapnya
+                </button>
+              )}
             </p>
           </div>
 
@@ -185,23 +197,25 @@ export default function AboutSection() {
         {/* ── Services grid ───────────────────────────────────── */}
         <div className="mb-20">
           <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-8">Lorem ipsum dolor sit</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-zinc-800/50 border border-zinc-800 rounded-xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800 border border-zinc-800 rounded-2xl overflow-hidden">
             {services.map((svc, i) => (
               <div
                 key={svc.title}
                 ref={el => svcRef.current[i] = el}
-                className="bg-zinc-900 p-8 cursor-default group/svc hover:bg-[#8fff3a]/5 transition-all duration-500 relative overflow-hidden"
+                className="bg-zinc-950 p-8 cursor-default group/svc hover:bg-[#8fff3a]/5 transition-all duration-500 relative overflow-hidden"
                 onMouseLeave={e => resetTilt(e.currentTarget)}
                 onMouseMove={e => applyTilt(e.currentTarget, e)}
               >
                 <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#8fff3a] to-transparent scale-x-0 group-hover/svc:scale-x-100 transition-transform duration-500 origin-left" />
 
-                <div className="text-2xl mb-5 text-zinc-600 transition-all duration-300 group-hover/svc:text-[#8fff3a] group-hover/svc:scale-125 group-hover/svc:-rotate-12 inline-block">
-                  {svc.icon}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="text-2xl text-zinc-600 transition-all duration-300 group-hover/svc:text-[#8fff3a] group-hover/svc:scale-110 group-hover/svc:-rotate-12">
+                    {svc.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-white">
+                    {svc.title}
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold mb-3 text-white">
-                  {svc.title}
-                </h3>
                 <p className="text-sm leading-relaxed text-zinc-400">
                   {svc.desc}
                 </p>
