@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import heroVideo from "../assets/hero.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -180,7 +181,7 @@ export default function HeroVideo() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-0 will-change-transform pointer-events-none"
       >
-        <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+        <source src={heroVideo} type="video/mp4" />
       </video>
 
       {/* ── Gradient Overlay ────────────────────────────────── */}
@@ -202,26 +203,25 @@ export default function HeroVideo() {
 
       {/* ── Content ─────────────────────────────────────────── */}
       <div className="container relative z-20 h-full flex flex-col justify-center items-center text-center">
-        
+
         <div ref={badgeRef} className="mb-8">
-          <span className="tag">Creative Agency — Est. 2020</span>
+          <span className="tag">lorem ipsum dolor sit amet</span>
         </div>
 
         <h1 ref={h1Ref} className="heading-display mb-6 max-w-[15ch]">
-          We Capture <span className="text-[#8fff3a] glow-text">Moments</span> That Matter
+          Lorem ipsum <span className="text-[#8fff3a] glow-text"> dolor sit </span> amet
         </h1>
 
         <p ref={subRef} className="body-copy max-w-[45ch] mb-12">
-          Premium photography & videography for brands, events, and
-          campaigns — crafted with cinematic purpose.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
         </p>
 
         <div ref={ctaRef} className="flex flex-col sm:flex-row justify-center gap-5">
           <a href="#about" className="btn-green">
-            Explore Work <span className="ml-2 inline-block animate-bounce">↓</span>
+            Lorem ipsum <span className="ml-2 inline-block animate-bounce">↓</span>
           </a>
           <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="btn-outline">
-            WhatsApp Us
+            Lorem ipsum
           </a>
         </div>
       </div>

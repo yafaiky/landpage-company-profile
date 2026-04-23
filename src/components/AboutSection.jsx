@@ -5,17 +5,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const stats = [
-  { num: 200, suffix: '+', lbl: 'Projects Done' },
-  { num: 50,  suffix: '+', lbl: 'Happy Clients'  },
-  { num: 5,   suffix: '+', lbl: 'Years Active'   },
-  { num: 15,  suffix: '',  lbl: 'Awards Won'      },
+  { num: 200, suffix: '+', lbl: 'Lorem Ipsum' },
+  { num: 50, suffix: '+', lbl: 'Lorem Ipsum' },
+  { num: 5, suffix: '+', lbl: 'Lorem Ipsum' },
+  { num: 15, suffix: '', lbl: 'Lorem Ipsum' },
 ]
 
 const services = [
-  { icon: '◉', title: 'Photography',     desc: 'Product, portrait, brand, and editorial photography with cinematic precision.' },
-  { icon: '▶',  title: 'Videography',    desc: 'Brand films, promos, and documentary-style content from concept to final cut.' },
-  { icon: '◈',  title: 'Content Studio', desc: 'Reels, short films, and social content built for engagement and reach.'          },
-  { icon: '◆',  title: 'Branding',       desc: 'Visual identity, creative direction, and brand strategy for modern businesses.'  },
+  { icon: '◉', title: 'Lorem', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { icon: '▶', title: 'Lorem', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { icon: '◈', title: 'Lorem', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { icon: '◆', title: 'Lorem', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
 ]
 
 /* ── Utility: reveal on scroll ───────────────────────────────── */
@@ -36,30 +36,30 @@ function reveal(el, opts = {}) {
 /* ── Utility: 3-D tilt from mouse pos ────────────────────────── */
 function applyTilt(el, e) {
   const rect = el.getBoundingClientRect()
-  const cx = rect.left + rect.width  / 2
-  const cy = rect.top  + rect.height / 2
-  const dx = (e.clientX - cx) / (rect.width  / 2)
+  const cx = rect.left + rect.width / 2
+  const cy = rect.top + rect.height / 2
+  const dx = (e.clientX - cx) / (rect.width / 2)
   const dy = (e.clientY - cy) / (rect.height / 2)
-  el.style.transform   = `perspective(600px) rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg) scale(1.03)`
-  el.style.boxShadow   = `${-dx * 12}px ${dy * 10}px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(143,255,58,0.18)`
-  el.style.zIndex      = '2'
+  el.style.transform = `perspective(600px) rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg) scale(1.03)`
+  el.style.boxShadow = `${-dx * 12}px ${dy * 10}px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(143,255,58,0.18)`
+  el.style.zIndex = '2'
 }
 
 function resetTilt(el) {
-  el.style.transform   = ''
-  el.style.boxShadow   = ''
-  el.style.zIndex      = ''
+  el.style.transform = ''
+  el.style.boxShadow = ''
+  el.style.zIndex = ''
 }
 
 export default function AboutSection() {
-  const sectionRef   = useRef(null)
-  const headRef      = useRef(null)
-  const bodyRef      = useRef(null)
-  const statsRef     = useRef([])
-  const statNumRef   = useRef([])
-  const svcRef       = useRef([])
-  const vmRef        = useRef([])
-  const dividerRef   = useRef(null)
+  const sectionRef = useRef(null)
+  const headRef = useRef(null)
+  const bodyRef = useRef(null)
+  const statsRef = useRef([])
+  const statNumRef = useRef([])
+  const svcRef = useRef([])
+  const vmRef = useRef([])
+  const dividerRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -131,8 +131,8 @@ export default function AboutSection() {
       className="relative overflow-hidden bg-zinc-950 py-24 md:py-32 px-6 lg:px-12"
     >
       {/* Subtle green ambient blob */}
-      <div 
-        className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full pointer-events-none blur-[100px] opacity-20" 
+      <div
+        className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full pointer-events-none blur-[100px] opacity-20"
         style={{ background: 'radial-gradient(circle, #8fff3a 0%, transparent 70%)' }}
       />
 
@@ -142,14 +142,14 @@ export default function AboutSection() {
         <div className="flex flex-col lg:flex-row items-start justify-between mb-20 gap-12">
           <div className="max-w-[600px]">
             <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-5">
-              01 — About Us
+              01 — Tentang Kami
             </p>
             <h2 ref={headRef} className="text-4xl md:text-6xl font-bold leading-[1.1] text-white mb-6">
-              We believe visual stories<br />
-              <span className="text-[#8fff3a]">drive real results.</span>
+              Lorem ipsum<br />
+              <span className="text-[#8fff3a]">Lorem ipsum dolor sit amet consectetur.</span>
             </h2>
             <p ref={bodyRef} className="text-zinc-400 text-lg leading-relaxed max-w-[44ch]">
-              VisuArt Studio adalah creative agency premium yang mengkhususkan diri dalam fotografi, videografi, dan produksi konten visual — membantu brand berkomunikasi lebih kuat dan lebih otentik.
+              Byvisco adalah creative agency berbasis di Jakarta Timur yang berfokus pada branding, visual identity, dan konten kreatif untuk UMKM dan bisnis lokal. Kami percaya bahwa setiap bisnis — sekecil apapun — berhak tampil profesional dan punya identitas yang kuat. Didukung oleh tim muda berpengalaman di industri media dan produksi, kami siap menjadi mitra kreatif jangka panjang bisnis kamu.
             </p>
           </div>
 
@@ -184,7 +184,7 @@ export default function AboutSection() {
 
         {/* ── Services grid ───────────────────────────────────── */}
         <div className="mb-20">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-8">What We Do</p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-8">Lorem ipsum dolor sit</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-zinc-800/50 border border-zinc-800 rounded-xl overflow-hidden">
             {services.map((svc, i) => (
               <div
@@ -217,12 +217,12 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {[
             {
-              title: 'Visi',
-              text: 'Menjadi studio kreatif terdepan di Asia Tenggara yang menghadirkan visual berkualitas sinema untuk setiap brand.',
+              title: 'Lorem',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             },
             {
               title: 'Misi',
-              text: 'Memperkuat komunikasi visual brand melalui fotografi, videografi, dan produksi konten yang autentik dan berdampak.',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             },
           ].map((item, i) => (
             <div

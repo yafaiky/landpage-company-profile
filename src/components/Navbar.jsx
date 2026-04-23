@@ -82,7 +82,7 @@ export default function Navbar() {
           href="/" 
           className="relative z-[60] font-black text-lg tracking-widest text-white uppercase"
         >
-          byvisco<span className="text-[#8fff3a]">.</span>
+          byvisco<span className="text-[#8fff3a]"> creative</span>
         </a>
 
         {/* Hamburger Button */}
@@ -138,7 +138,7 @@ export default function Navbar() {
 
         {/* Social Links */}
         <div className="flex gap-8 mt-12">
-          {['Instagram', 'WhatsApp', 'LinkedIn'].map(s => (
+          {['lorem ipsum', 'lorem ipsum', 'lorem ipsum'].map(s => (
             <a 
               key={s} 
               href="#"
