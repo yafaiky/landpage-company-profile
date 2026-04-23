@@ -7,7 +7,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const overlayRef = useRef(null)
   const itemsRef = useRef([])
-  const lineRef = useRef(null)
   const tl = useRef(null)
   const navigate = useNavigate()
   const location = useLocation()
@@ -27,20 +26,23 @@ export default function Navbar() {
       .set(overlay, { display: 'flex' })
       .fromTo(overlay,
         { opacity: 0 },
-        { opacity: 1, duration: 0.35, ease: 'power2.out' }
+        { opacity: 1, duration: 0.4, ease: 'power2.out' }
       )
       .fromTo(items,
-        { y: 48, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.05, duration: 0.5, ease: 'power3.out' },
-        '-=0.1'
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.08, duration: 0.6, ease: 'power3.out' },
+        '-=0.2'
       )
 
     return () => tl.current?.kill()
   }, [])
 
   const toggleMenu = () => {
-    if (!open) { tl.current?.play() }
-    else { tl.current?.reverse() }
+    if (!open) { 
+      tl.current?.play() 
+    } else { 
+      tl.current?.reverse() 
+    }
     setOpen(!open)
   }
 
@@ -56,8 +58,6 @@ export default function Navbar() {
         }, 400)
       }
     })
-    tl.current?.reverse()
-    setTimeout(() => setOpen(false), 500)
   }
 
   const links = [
@@ -69,116 +69,80 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Nav bar */}
+      {/* ── Navbar ────────────────────────────────────────────── */}
       <nav
-        style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '1.1rem 2rem',
-          background: scrolled ? 'rgba(14,15,13,0.88)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(143,255,58,0.08)' : 'none',
-          transition: 'background 0.4s, border-color 0.4s',
-        }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12 transition-all duration-500 ${
+          scrolled 
+            ? 'bg-[#0a0b09]/80 backdrop-blur-lg border-b border-[#8fff3a]/10' 
+            : 'bg-transparent border-b border-transparent'
+        }`}
       >
         {/* Logo */}
-        <a href="/" style={{
-          fontFamily: 'var(--font)', fontWeight: 800, fontSize: '1.05rem',
-          letterSpacing: '0.08em', color: 'var(--white)',
-          zIndex: 60, textTransform: 'uppercase',
-        }}>
-          byvisco<span style={{ color: 'var(--green)' }}>.</span>
+        <a 
+          href="/" 
+          className="relative z-[60] font-black text-lg tracking-widest text-white uppercase"
+        >
+          byvisco<span className="text-[#8fff3a]">.</span>
         </a>
 
-        {/* Hamburger */}
+        {/* Hamburger Button */}
         <button
-          id="hamburger-btn"
           onClick={toggleMenu}
+          className="relative z-[60] flex flex-col justify-center items-end gap-[6px] w-10 h-10 group"
           aria-label="Toggle menu"
-          style={{
-            position: 'relative', zIndex: 60, display: 'flex', flexDirection: 'column',
-            gap: '5px', padding: '6px', cursor: 'pointer',
-          }}
         >
-          {[0, 1, 2].map(i => (
-            <span key={i} style={{
-              display: 'block', width: i === 1 ? '18px' : '24px',
-              height: '1.5px', background: open ? 'var(--green)' : 'var(--white)',
-              borderRadius: '2px',
-              transform: open
-                ? i === 0 ? 'rotate(45deg) translate(4.5px, 4.5px)'
-                  : i === 2 ? 'rotate(-45deg) translate(4.5px, -4.5px)'
-                  : 'scaleX(0)'
-                : 'none',
-              transition: 'transform 0.3s, opacity 0.3s, background 0.3s',
-              opacity: open && i === 1 ? 0 : 1,
-            }} />
-          ))}
+          <span className={`block h-[1.5px] bg-white rounded-full transition-all duration-300 ${
+            open ? 'w-8 bg-[#8fff3a] rotate-45 translate-y-[7.5px]' : 'w-8'
+          }`} />
+          <span className={`block h-[1.5px] bg-white rounded-full transition-all duration-300 ${
+            open ? 'w-0 opacity-0' : 'w-5 group-hover:w-8'
+          }`} />
+          <span className={`block h-[1.5px] bg-white rounded-full transition-all duration-300 ${
+            open ? 'w-8 bg-[#8fff3a] -rotate-45 -translate-y-[7.5px]' : 'w-8'
+          }`} />
         </button>
       </nav>
 
-      {/* Overlay */}
+      {/* ── Menu Overlay ──────────────────────────────────────── */}
       <div
         ref={overlayRef}
-        style={{
-          display: 'none', position: 'fixed', inset: 0, zIndex: 40,
-          flexDirection: 'column', justifyContent: 'center',
-          background: 'rgba(14,15,13,0.97)',
-          backdropFilter: 'blur(20px)',
-          paddingLeft: 'clamp(2rem, 8vw, 8rem)',
-        }}
+        className="fixed inset-0 z-40 hidden flex-col justify-center bg-[#0a0b09]/98 backdrop-blur-2xl px-8 md:px-32 lg:px-48"
       >
-        {/* Neon glow top */}
-        <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-          background: 'linear-gradient(90deg, transparent, var(--green), transparent)',
-          opacity: 0.6,
-        }} />
+        {/* Top Accent Line */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8fff3a] to-transparent opacity-40" />
 
-        <p className="label" style={{ marginBottom: '2.5rem', opacity: 0.6 }}>Navigation</p>
+        <p className="label mb-10 opacity-50">Navigation</p>
 
-        <nav style={{ display: 'flex', flexDirection: 'column' }}>
+        <nav className="flex flex-col">
           {links.map((link, i) => (
-            <div key={link.label}>
-              <div ref={el => lineRef.current = el} style={{
-                height: '1px', background: 'var(--dimmer)', marginBlock: '0',
-              }} />
+            <div key={link.label} className="group/item overflow-hidden">
+              {/* Divider */}
+              <div className="h-[1px] w-full bg-white/5" />
+              
               <button
                 ref={el => itemsRef.current[i] = el}
                 onClick={() => handleNav(link.path, link.hash)}
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  width: '100%', maxWidth: '600px',
-                  padding: '1.4rem 0', background: 'none', border: 'none',
-                  textAlign: 'left', cursor: 'pointer',
-                  color: 'var(--white)', transition: 'color 0.2s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.color = 'var(--green)'}
-                onMouseLeave={e => e.currentTarget.style.color = 'var(--white)'}
+                className="flex items-center justify-between w-full py-6 md:py-8 text-left transition-colors duration-300 group"
               >
-                <span style={{
-                  fontSize: 'clamp(2rem, 6vw, 4.5rem)',
-                  fontWeight: 700,
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  transition: 'color 0.2s',
-                }}>
+                <span className="text-4xl md:text-7xl font-bold tracking-tighter text-white group-hover:text-[#8fff3a] group-hover:translate-x-4 transition-all duration-500">
                   {link.label}
                 </span>
-                <span style={{ fontSize: '1.2rem', opacity: 0.5, marginRight: '1rem' }}>↗</span>
+                <span className="text-2xl md:text-4xl text-white/20 group-hover:text-[#8fff3a] transition-colors duration-300">
+                  ↗
+                </span>
               </button>
             </div>
           ))}
-          <div style={{ height: '1px', background: 'var(--dimmer)' }} />
+          <div className="h-[1px] w-full bg-white/5" />
         </nav>
 
-        {/* Social */}
-        <div style={{ display: 'flex', gap: '2rem', marginTop: '3rem' }}>
+        {/* Social Links */}
+        <div className="flex gap-8 mt-12">
           {['Instagram', 'WhatsApp', 'LinkedIn'].map(s => (
-            <a key={s} href="#"
-              style={{ fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--muted)', transition: 'color 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--green)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
+            <a 
+              key={s} 
+              href="#"
+              className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 hover:text-[#8fff3a] transition-colors"
             >
               {s}
             </a>

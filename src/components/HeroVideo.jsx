@@ -17,10 +17,10 @@ function createParticles(container) {
     const x = Math.random() * 100;
     const startY = 100 + Math.random() * 20;
 
-    // Static styles moved to Tailwind classes
-    el.className = "absolute bottom-0 rounded-full pointer-events-none will-change-[transform,opacity]";
+    // Tailwind utility classes for static styles
+    el.className = "absolute bottom-0 rounded-full pointer-events-none will-change-transform";
 
-    // Dynamic styles kept as inline
+    // Dynamic styles
     Object.assign(el.style, {
       width: `${size}px`,
       height: `${size}px`,
@@ -43,9 +43,6 @@ function createParticles(container) {
         ease: "power1.inOut",
         repeat: -1,
         repeatDelay: Math.random() * 4,
-        onRepeat() {
-          gsap.set(el, { opacity: 0 });
-        },
         onStart() {
           gsap.to(el, {
             opacity: Math.random() * 0.55 + 0.08,
@@ -71,7 +68,6 @@ export default function HeroVideo() {
   const heroRef = useRef(null);
   const videoRef = useRef(null);
   const overlayRef = useRef(null);
-  const labelRef = useRef(null);
   const h1Ref = useRef(null);
   const subRef = useRef(null);
   const ctaRef = useRef(null);
@@ -112,22 +108,19 @@ export default function HeroVideo() {
     const cx = lerped.x * 100;
     const cy = lerped.y * 100;
 
-    /* spotlight */
     if (spotRef.current) {
-      spotRef.current.style.background = `radial-gradient(ellipse 40% 35% at ${cx}% ${cy}%, rgba(143,255,58,0.055) 0%, transparent 75%)`;
+      spotRef.current.style.background = `radial-gradient(ellipse 40% 35% at ${cx}% ${cy}%, rgba(143,255,58,0.06) 0%, transparent 75%)`;
     }
 
-    /* edge glow intensity based on distance from center */
     if (glowRef.current) {
       const dx = lerped.x - 0.5;
       const dy = lerped.y - 0.5;
       const dist = Math.sqrt(dx * dx + dy * dy);
       const intensity = dist * 0.8;
       const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-      glowRef.current.style.background = `linear-gradient(${angle}deg, rgba(143,255,58,${intensity * 0.18}) 0%, transparent 60%)`;
+      glowRef.current.style.background = `linear-gradient(${angle}deg, rgba(143,255,58,${intensity * 0.15}) 0%, transparent 60%)`;
     }
 
-    /* subtle video tilt */
     if (videoRef.current) {
       const tx = (lerped.x - 0.5) * 18;
       const ty = (lerped.y - 0.5) * 10;
@@ -137,7 +130,6 @@ export default function HeroVideo() {
     rafRef.current = requestAnimationFrame(tick);
   }, []);
 
-  /* ── GSAP entrance + scroll ───────────────────────────────── */
   useEffect(() => {
     const hero = heroRef.current;
     const particles = createParticles(particleBox.current);
@@ -145,79 +137,24 @@ export default function HeroVideo() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.2 });
 
-      tl.fromTo(
-        videoRef.current,
-        { scale: 1.12, opacity: 0 },
-        { scale: 1.12, opacity: 1, duration: 1, ease: "power2.out" }
-      )
-        .fromTo(
-          overlayRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 1 },
-          "-=1.5"
-        )
-        .fromTo(
-          badgeRef.current,
-          { y: 12, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
-          "-=0.6"
-        )
-        .fromTo(
-          h1Ref.current,
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
-          "-=0.3"
-        )
-        .fromTo(
-          subRef.current,
-          { y: 24, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
-          "-=0.5"
-        )
-        .fromTo(
-          ctaRef.current,
-          { y: 16, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
-          "-=0.4"
-        )
-        .fromTo(
-          scrollRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.4 },
-          "-=0.2"
-        );
+      tl.fromTo(videoRef.current, { scale: 1.12, opacity: 0 }, { scale: 1.12, opacity: 1, duration: 1.2, ease: "power2.out" })
+        .fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 1.5 }, "-=1.0")
+        .fromTo(badgeRef.current, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.8")
+        .fromTo(h1Ref.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=0.5")
+        .fromTo(subRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.7")
+        .fromTo(ctaRef.current, { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.6")
+        .fromTo(scrollRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5 }, "-=0.3");
 
-      /* scroll parallax — video */
       gsap.to(videoRef.current, {
-        yPercent: 25,
+        yPercent: 20,
         ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
+        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true }
       });
-
-      /* scroll parallax — content */
-      gsap.to(
-        [h1Ref.current, subRef.current, ctaRef.current, badgeRef.current],
-        {
-          yPercent: 30,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "50% top",
-            scrub: 1,
-          },
-        }
-      );
-    }, heroRef);
+    }, hero);
 
     rafRef.current = requestAnimationFrame(tick);
-    hero.addEventListener("mousemove", handleMouseMove, { passive: true });
-    hero.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+    hero.addEventListener("mousemove", handleMouseMove);
+    hero.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       ctx.revert();
@@ -232,120 +169,81 @@ export default function HeroVideo() {
     <section
       ref={heroRef}
       id="hero"
-      className="relative w-full h-[100svh] overflow-hidden cursor-crosshair group"
+      className="relative w-full h-[100svh] overflow-hidden bg-[#0a0b09] cursor-crosshair group"
     >
-      {/* ── Video ─────────────────────────────────────────────── */}
+      {/* ── Video Background ────────────────────────────────── */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-0 will-change-transform transition-transform duration-100 ease-linear"
+        className="absolute inset-0 w-full h-full object-cover opacity-0 will-change-transform pointer-events-none"
       >
-        <source
-          src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4"
-          type="video/mp4"
-        />
+        <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4" />
       </video>
 
-      {/* ── Base overlay ──────────────────────────────────────── */}
+      {/* ── Gradient Overlay ────────────────────────────────── */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 opacity-0 bg-[linear-gradient(180deg,rgba(14,15,13,0.55)_0%,rgba(14,15,13,0.18)_40%,rgba(14,15,13,0.80)_100%)]"
+        className="absolute inset-0 z-[5] bg-gradient-to-b from-[#0a0b09]/60 via-transparent to-[#0a0b09]"
       />
 
-      {/* ── Cursor spotlight ──────────────────────────────────── */}
-      <div
-        ref={spotRef}
-        className="absolute inset-0 pointer-events-none z-10 transition-colors duration-75"
-      />
+      {/* ── Spotlight & Glow (Controlled by RAF) ───────────── */}
+      <div ref={spotRef} className="absolute inset-0 pointer-events-none z-[6]" />
+      <div ref={glowRef} className="absolute inset-0 pointer-events-none z-[7]" />
 
-      {/* ── Edge directional glow ─────────────────────────────── */}
-      <div
-        ref={glowRef}
-        className="absolute inset-0 pointer-events-none z-[11] transition-colors duration-150"
-      />
+      {/* ── Particles ───────────────────────────────────────── */}
+      <div ref={particleBox} className="absolute inset-0 pointer-events-none z-[8]" />
 
-      {/* ── Particles ─────────────────────────────────────────── */}
-      <div
-        ref={particleBox}
-        className="absolute inset-0 pointer-events-none z-[12] overflow-hidden"
-      />
+      {/* ── Scanlines ───────────────────────────────────────── */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#8fff3a]/40 to-transparent z-10" />
+      <div className="absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#8fff3a]/20 to-transparent z-10 animate-[scanline_8s_linear_infinite] pointer-events-none" />
 
-      {/* ── Scan line top ─────────────────────────────────────── */}
-      <div className="absolute top-0 inset-x-0 h-[1px] opacity-50 z-[15] bg-[linear-gradient(90deg,transparent_0%,var(--green)_50%,transparent_100%)]" />
-
-      {/* ── Animated horizontal scan line ─────────────────────── */}
-      <div className="absolute inset-x-0 h-[1px] z-[15] pointer-events-none bg-[linear-gradient(90deg,transparent_0%,rgba(143,255,58,0.3)_50%,transparent_100%)] animate-[scanline_6s_ease-in-out_infinite]" />
-
-      {/* ── Content ───────────────────────────────────────────── */}
-      <div className="container mx-auto relative z-20 h-full flex flex-col justify-center items-center text-center px-4">
+      {/* ── Content ─────────────────────────────────────────── */}
+      <div className="container relative z-20 h-full flex flex-col justify-center items-center text-center">
         
-        {/* Badge */}
-        <div ref={badgeRef} className="mb-10">
+        <div ref={badgeRef} className="mb-8">
           <span className="tag">Creative Agency — Est. 2020</span>
         </div>
 
-        {/* H1 */}
-        <h1
-          ref={h1Ref}
-          className="heading-display max-w-[14ch] mb-5"
-        >
-          We Capture <span className="text-[var(--green)]">Moments</span> That Matter
+        <h1 ref={h1Ref} className="heading-display mb-6 max-w-[15ch]">
+          We Capture <span className="text-[#8fff3a] glow-text">Moments</span> That Matter
         </h1>
 
-        {/* Sub */}
-        <p
-          ref={subRef}
-          className="body-copy max-w-[42ch] mb-12 text-[#f0f0eb]/65"
-        >
-          Premium photography &amp; videography for brands, events, and
-          campaigns — crafted with purpose.
+        <p ref={subRef} className="body-copy max-w-[45ch] mb-12">
+          Premium photography & videography for brands, events, and
+          campaigns — crafted with cinematic purpose.
         </p>
 
-        {/* CTA */}
-        <div
-          ref={ctaRef}
-          className="flex justify-center gap-4 flex-wrap"
-        >
-          <a href="#about" className="btn-green cursor-pointer" id="hero-cta-primary">
-            Explore Work <span>↓</span>
+        <div ref={ctaRef} className="flex flex-col sm:flex-row justify-center gap-5">
+          <a href="#about" className="btn-green">
+            Explore Work <span className="ml-2 inline-block animate-bounce">↓</span>
           </a>
-          <a
-            href="https://wa.me/6281234567890"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-outline cursor-pointer"
-            id="hero-cta-wa"
-          >
+          <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="btn-outline">
             WhatsApp Us
           </a>
         </div>
       </div>
 
-      {/* ── Scroll hint ───────────────────────────────────────── */}
+      {/* ── Scroll Indicator ────────────────────────────────── */}
       <div
         ref={scrollRef}
-        className="absolute bottom-8 right-8 z-20 flex flex-col items-center gap-2 opacity-0"
+        className="absolute bottom-10 right-6 md:right-12 z-30 flex flex-col items-center gap-3"
       >
-        <span className="text-[0.6rem] font-semibold tracking-[0.2em] uppercase text-[var(--muted)] [writing-mode:vertical-lr]">
+        <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500 [writing-mode:vertical-lr]">
           Scroll
         </span>
-        <div className="w-[1px] h-[48px] bg-gradient-to-b from-[var(--green-dim)] to-transparent animate-[scrollPulse_2s_ease-in-out_infinite]" />
+        <div className="w-[1px] h-12 bg-gradient-to-b from-[#8fff3a] to-transparent animate-pulse" />
       </div>
 
-      {/* ── Custom Keyframes ──────────────────────────────────── */}
+      {/* ── Custom Scanline Keyframe ────────────────────────── */}
       <style>{`
         @keyframes scanline {
-          0%   { top: -2px; opacity: 0; }
-          5%   { opacity: 1; }
-          95%  { opacity: 0.6; }
-          100% { top: 100%; opacity: 0; }
-        }
-        @keyframes scrollPulse {
-          0%, 100% { opacity: 0.4; transform: scaleY(1); }
-          50%      { opacity: 1;   transform: scaleY(1.15); }
+          0% { top: -5%; opacity: 0; }
+          15% { opacity: 0.5; }
+          85% { opacity: 0.5; }
+          100% { top: 105%; opacity: 0; }
         }
       `}</style>
     </section>

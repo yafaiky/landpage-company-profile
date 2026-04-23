@@ -61,20 +61,27 @@ const plans = [
 
 export default function PricelistSection() {
   const sectionRef = useRef(null)
-  const headRef    = useRef(null)
-  const cardsRef   = useRef([])
+  const headRef = useRef(null)
+  const cardsRef = useRef([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(headRef.current,
-        { y: 36, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out',
-          scrollTrigger: { trigger: headRef.current, start: 'top 82%' } }
+        { y: 30, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: headRef.current, start: 'top 85%' } 
+        }
       )
-      gsap.fromTo(cardsRef.current.filter(Boolean),
-        { y: 48, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.12, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: cardsRef.current[0], start: 'top 80%' } }
+      
+      // Cards Animation (Staggered)
+      gsap.fromTo(cardsRef.current,
+        { y: 50, opacity: 0 },
+        { 
+          y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' } 
+        }
       )
     }, sectionRef)
     return () => ctx.revert()
@@ -84,145 +91,105 @@ export default function PricelistSection() {
     <section
       ref={sectionRef}
       id="pricelist"
-      className="section-pad"
-      style={{ background: 'var(--bg2)' }}
+      className="section-pad bg-[#11120f]" // Menggunakan --bg2
     >
       <div className="container">
 
-        {/* Header */}
-        <div ref={headRef} style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}>
-          <p className="label" style={{ marginBottom: '1rem' }}>02 — Pricing</p>
-          <h2 className="heading-xl" style={{ maxWidth: '18ch' }}>
+        {/* ── Header ─────────────────────────────────────────── */}
+        <div ref={headRef} className="mb-16 md:mb-24">
+          <p className="label mb-4 opacity-60">02 — Pricing</p>
+          <h2 className="heading-xl max-w-[18ch]">
             Simple, transparent<br />
-            <span style={{ color: 'var(--green)' }}>pricing.</span>
+            <span className="text-[#8fff3a]">pricing.</span>
           </h2>
         </div>
 
-        {/* Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1rem',
-          alignItems: 'start',
-        }}>
+        {/* ── Pricing Grid ───────────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           {plans.map((plan, i) => (
             <div
               key={plan.id}
               ref={el => cardsRef.current[i] = el}
-              style={{
-                background: plan.popular ? 'var(--green-faint)' : 'var(--card)',
-                border: plan.popular ? '1px solid var(--green-border)' : '1px solid var(--dimmer)',
-                borderRadius: '12px',
-                padding: '2rem',
-                position: 'relative',
-                transition: 'transform 0.3s, box-shadow 0.3s, border-color 0.3s',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-6px)'
-                e.currentTarget.style.boxShadow = plan.popular
-                  ? '0 20px 50px rgba(143,255,58,0.12)'
-                  : '0 20px 50px rgba(0,0,0,0.5)'
-                if (!plan.popular) e.currentTarget.style.borderColor = 'var(--green-border)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'none'
-                e.currentTarget.style.boxShadow = 'none'
-                if (!plan.popular) e.currentTarget.style.borderColor = 'var(--dimmer)'
-              }}
+              className={`
+                relative p-8 rounded-2xl transition-all duration-500 group
+                ${plan.popular 
+                  ? 'bg-[#8fff3a]/5 border border-[#8fff3a]/30 shadow-[0_0_40px_rgba(143,255,58,0.05)]' 
+                  : 'bg-[#161714] border border-white/5 hover:border-[#8fff3a]/30'
+                }
+                hover:-translate-y-3 hover:shadow-2xl hover:shadow-black/50
+              `}
             >
-              {/* Popular badge */}
+              {/* Most Popular Tag */}
               {plan.popular && (
-                <div style={{ position: 'absolute', top: '-12px', left: '2rem' }}>
-                  <span className="tag">Most Popular</span>
+                <div className="absolute -top-3 left-8">
+                  <span className="tag shadow-lg shadow-[#8fff3a]/20">Most Popular</span>
                 </div>
               )}
 
-              {/* Plan name */}
-              <p style={{
-                fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em',
-                textTransform: 'uppercase', color: plan.popular ? 'var(--green)' : 'var(--muted)',
-                marginBottom: '1rem',
-              }}>
+              {/* Plan Title */}
+              <p className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-6 
+                ${plan.popular ? 'text-[#8fff3a]' : 'text-zinc-500'}`}>
                 {plan.name}
               </p>
 
-              {/* Price */}
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.4rem', marginBottom: '0.5rem' }}>
-                <span style={{
-                  fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800,
-                  color: plan.popular ? 'var(--green)' : 'var(--white)',
-                  letterSpacing: '-0.03em',
-                }}>
+              {/* Price Tag */}
+              <div className="flex items-baseline gap-2 mb-4">
+                <span className={`text-4xl md:text-5xl font-black tracking-tighter 
+                  ${plan.popular ? 'text-[#8fff3a]' : 'text-white'}`}>
                   {plan.price}
                 </span>
                 {plan.period && (
-                  <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>{plan.period}</span>
+                  <span className="text-sm text-zinc-500 font-medium">{plan.period}</span>
                 )}
               </div>
 
-              <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              {/* Description */}
+              <p className="text-sm text-zinc-400 leading-relaxed mb-8 h-12">
                 {plan.desc}
               </p>
 
               {/* Divider */}
-              <div style={{ height: '1px', background: plan.popular ? 'var(--green-border)' : 'var(--dimmer)', marginBottom: '1.5rem' }} />
+              <div className={`h-[1px] w-full mb-8 transition-colors duration-500
+                ${plan.popular ? 'bg-[#8fff3a]/20' : 'bg-white/5 group-hover:bg-[#8fff3a]/20'}`} 
+              />
 
-              {/* Features */}
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '2rem' }}>
+              {/* Features List */}
+              <ul className="space-y-4 mb-10">
                 {plan.features.map(f => (
-                  <li key={f} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', color: 'var(--white)' }}>
-                    <span style={{ color: 'var(--green)', fontSize: '0.7rem', flexShrink: 0 }}>✓</span>
+                  <li key={f} className="flex items-start gap-3 text-[13px] text-zinc-300 font-medium">
+                    <span className="text-[#8fff3a] mt-0.5 font-bold">✓</span>
                     {f}
                   </li>
                 ))}
               </ul>
 
-              {/* CTA */}
+              {/* CTA Button */}
               <a
                 href="https://wa.me/6281234567890"
-                target="_blank" rel="noreferrer"
-                id={`price-cta-${plan.id}`}
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                  width: '100%', padding: '0.8rem',
-                  background: plan.popular ? 'var(--green)' : 'transparent',
-                  border: plan.popular ? 'none' : '1px solid var(--green-border)',
-                  color: plan.popular ? 'var(--bg)' : 'var(--white)',
-                  borderRadius: '8px',
-                  fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase',
-                  transition: 'all 0.25s',
-                }}
-                onMouseEnter={e => {
-                  if (!plan.popular) {
-                    e.currentTarget.style.background = 'var(--green-faint)'
-                    e.currentTarget.style.borderColor = 'var(--green)'
-                    e.currentTarget.style.color = 'var(--green)'
-                  } else {
-                    e.currentTarget.style.background = 'var(--white)'
+                target="_blank" 
+                rel="noreferrer"
+                className={`
+                  flex items-center justify-center gap-2 w-full py-4 rounded-xl
+                  text-[11px] font-black uppercase tracking-widest transition-all duration-300
+                  ${plan.popular 
+                    ? 'bg-[#8fff3a] text-[#0a0b09] hover:bg-white' 
+                    : 'bg-transparent border border-[#8fff3a]/30 text-white hover:bg-[#8fff3a] hover:text-[#0a0b09] hover:border-[#8fff3a]'
                   }
-                }}
-                onMouseLeave={e => {
-                  if (!plan.popular) {
-                    e.currentTarget.style.background = 'transparent'
-                    e.currentTarget.style.borderColor = 'var(--green-border)'
-                    e.currentTarget.style.color = 'var(--white)'
-                  } else {
-                    e.currentTarget.style.background = 'var(--green)'
-                  }
-                }}
+                `}
               >
-                {plan.cta} <span>↗</span>
+                {plan.cta} <span className="text-base">↗</span>
               </a>
             </div>
           ))}
         </div>
 
-        {/* Note */}
-        <p style={{
-          textAlign: 'center', fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2.5rem',
-        }}>
-          Semua harga dapat disesuaikan. Konsultasi gratis via WhatsApp.
-        </p>
+        {/* ── Footer Note ────────────────────────────────────── */}
+        <div className="mt-16 text-center">
+          <p className="text-xs text-zinc-500 font-medium tracking-wide">
+            Semua harga dapat disesuaikan. <br className="md:hidden" />
+            <span className="text-zinc-400">Konsultasi gratis via WhatsApp.</span>
+          </p>
+        </div>
       </div>
     </section>
   )

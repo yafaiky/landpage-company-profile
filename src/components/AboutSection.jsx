@@ -12,10 +12,10 @@ const stats = [
 ]
 
 const services = [
-  { icon: '◉', title: 'Photography',     desc: 'Product, portrait, brand, and editorial photography with cinematic precision.',    accent: '#8fff3a' },
-  { icon: '▶',  title: 'Videography',    desc: 'Brand films, promos, and documentary-style content from concept to final cut.',    accent: '#8fff3a' },
-  { icon: '◈',  title: 'Content Studio', desc: 'Reels, short films, and social content built for engagement and reach.',           accent: '#8fff3a' },
-  { icon: '◆',  title: 'Branding',       desc: 'Visual identity, creative direction, and brand strategy for modern businesses.',   accent: '#8fff3a' },
+  { icon: '◉', title: 'Photography',     desc: 'Product, portrait, brand, and editorial photography with cinematic precision.' },
+  { icon: '▶',  title: 'Videography',    desc: 'Brand films, promos, and documentary-style content from concept to final cut.' },
+  { icon: '◈',  title: 'Content Studio', desc: 'Reels, short films, and social content built for engagement and reach.'          },
+  { icon: '◆',  title: 'Branding',       desc: 'Visual identity, creative direction, and brand strategy for modern businesses.'  },
 ]
 
 /* ── Utility: reveal on scroll ───────────────────────────────── */
@@ -38,8 +38,8 @@ function applyTilt(el, e) {
   const rect = el.getBoundingClientRect()
   const cx = rect.left + rect.width  / 2
   const cy = rect.top  + rect.height / 2
-  const dx = (e.clientX - cx) / (rect.width  / 2)   // -1 … 1
-  const dy = (e.clientY - cy) / (rect.height / 2)   // -1 … 1
+  const dx = (e.clientX - cx) / (rect.width  / 2)
+  const dy = (e.clientY - cy) / (rect.height / 2)
   el.style.transform   = `perspective(600px) rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg) scale(1.03)`
   el.style.boxShadow   = `${-dx * 12}px ${dy * 10}px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(143,255,58,0.18)`
   el.style.zIndex      = '2'
@@ -63,12 +63,9 @@ export default function AboutSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
-      /* ── headline / body reveal ───────────────────────────── */
       reveal(headRef.current)
       reveal(bodyRef.current, { delay: 0.1 })
 
-      /* ── stat cards stagger ───────────────────────────────── */
       gsap.fromTo(statsRef.current.filter(Boolean),
         { y: 30, opacity: 0 },
         {
@@ -77,7 +74,6 @@ export default function AboutSection() {
         }
       )
 
-      /* ── animated number counters ────────────────────────── */
       statNumRef.current.filter(Boolean).forEach((el, i) => {
         const proxy = { val: 0 }
         const suffix = stats[i].suffix
@@ -98,7 +94,6 @@ export default function AboutSection() {
         })
       })
 
-      /* ── service cards ────────────────────────────────────── */
       gsap.fromTo(svcRef.current.filter(Boolean),
         { y: 40, opacity: 0 },
         {
@@ -107,7 +102,6 @@ export default function AboutSection() {
         }
       )
 
-      /* ── vision / mission ─────────────────────────────────── */
       gsap.fromTo(vmRef.current.filter(Boolean),
         { y: 30, opacity: 0, x: -20 },
         {
@@ -116,7 +110,6 @@ export default function AboutSection() {
         }
       )
 
-      /* ── divider width reveal ─────────────────────────────── */
       if (dividerRef.current) {
         gsap.fromTo(dividerRef.current,
           { scaleX: 0, opacity: 0 },
@@ -127,9 +120,7 @@ export default function AboutSection() {
           }
         )
       }
-
     }, sectionRef)
-
     return () => ctx.revert()
   }, [])
 
@@ -137,82 +128,47 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="section-pad"
-      style={{ background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}
+      className="relative overflow-hidden bg-zinc-950 py-24 md:py-32 px-6 lg:px-12"
     >
-      {/* subtle green ambient blob */}
-      <div style={{
-        position: 'absolute', top: '-10%', right: '-5%',
-        width: '420px', height: '420px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(143,255,58,0.045) 0%, transparent 70%)',
-        pointerEvents: 'none',
-        filter: 'blur(40px)',
-      }} />
+      {/* Subtle green ambient blob */}
+      <div 
+        className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full pointer-events-none blur-[100px] opacity-20" 
+        style={{ background: 'radial-gradient(circle, #8fff3a 0%, transparent 70%)' }}
+      />
 
-      <div className="container">
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* ── Top header row ──────────────────────────────────── */}
-        <div style={{
-          display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
-          marginBottom: 'clamp(3rem, 6vw, 6rem)',
-          flexWrap: 'wrap', gap: '2rem',
-        }}>
-          <div style={{ maxWidth: '600px' }}>
-            <p className="label" style={{ marginBottom: '1.25rem' }}>01 — About Us</p>
-            <h2 ref={headRef} className="heading-xl" style={{ marginBottom: '1.25rem' }}>
+        <div className="flex flex-col lg:flex-row items-start justify-between mb-20 gap-12">
+          <div className="max-w-[600px]">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-5">
+              01 — About Us
+            </p>
+            <h2 ref={headRef} className="text-4xl md:text-6xl font-bold leading-[1.1] text-white mb-6">
               We believe visual stories<br />
-              <span style={{ color: 'var(--green)' }}>drive real results.</span>
+              <span className="text-[#8fff3a]">drive real results.</span>
             </h2>
-            <p ref={bodyRef} className="body-copy" style={{ maxWidth: '44ch' }}>
+            <p ref={bodyRef} className="text-zinc-400 text-lg leading-relaxed max-w-[44ch]">
               VisuArt Studio adalah creative agency premium yang mengkhususkan diri dalam fotografi, videografi, dan produksi konten visual — membantu brand berkomunikasi lebih kuat dan lebih otentik.
             </p>
           </div>
 
           {/* ── Stats grid ──────────────────────────────────── */}
-          <div style={{
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px',
-            border: '1px solid var(--dimmer)', borderRadius: '12px', overflow: 'hidden',
-            alignSelf: 'flex-start', minWidth: '240px',
-          }}>
+          <div className="grid grid-cols-2 gap-[1px] bg-zinc-800/50 border border-zinc-800 rounded-xl overflow-hidden self-start min-w-[300px]">
             {stats.map((s, i) => (
               <div
                 key={s.lbl}
                 ref={el => statsRef.current[i] = el}
-                style={{
-                  padding: '1.4rem 1.25rem',
-                  background: 'var(--card)',
-                  borderRight:  i % 2 === 0 ? '1px solid var(--dimmer)' : 'none',
-                  borderBottom: i < 2 ? '1px solid var(--dimmer)' : 'none',
-                  cursor: 'default',
-                  transition: 'background 0.3s',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = 'var(--green-faint)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = 'var(--card)'
-                }}
+                className="p-6 bg-zinc-900 group/stat hover:bg-[#8fff3a]/5 transition-colors duration-300 relative"
               >
-                {/* hover accent line */}
-                <div style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  height: '2px',
-                  background: 'linear-gradient(90deg, transparent, var(--green), transparent)',
-                  opacity: 0,
-                  transition: 'opacity 0.3s',
-                }}
-                  className="stat-accent-line"
-                />
+                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#8fff3a] to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300" />
                 <div
                   ref={el => statNumRef.current[i] = el}
-                  style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--green)', letterSpacing: '-0.03em', lineHeight: 1 }}
+                  className="text-3xl font-extrabold text-[#8fff3a] tracking-tight leading-none"
                 >
                   0{s.suffix}
                 </div>
-                <div style={{ fontSize: '0.7rem', fontWeight: 500, color: 'var(--muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginTop: '0.3rem' }}>
+                <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-2">
                   {s.lbl}
                 </div>
               </div>
@@ -223,73 +179,30 @@ export default function AboutSection() {
         {/* ── Divider ─────────────────────────────────────────── */}
         <div
           ref={dividerRef}
-          className="divider-green"
-          style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
+          className="h-[1px] w-full bg-gradient-to-r from-[#8fff3a] to-transparent opacity-30 mb-20"
         />
 
         {/* ── Services grid ───────────────────────────────────── */}
-        <div style={{ marginBottom: 'clamp(3rem, 6vw, 6rem)' }}>
-          <p className="label" style={{ marginBottom: '2rem' }}>What We Do</p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '1px',
-            border: '1px solid var(--dimmer)', borderRadius: '12px', overflow: 'hidden',
-          }}>
+        <div className="mb-20">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-8">What We Do</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-zinc-800/50 border border-zinc-800 rounded-xl overflow-hidden">
             {services.map((svc, i) => (
               <div
                 key={svc.title}
                 ref={el => svcRef.current[i] = el}
-                className="card"
-                style={{
-                  padding: '2rem 1.75rem',
-                  borderRadius: 0,
-                  border: 'none',
-                  borderRight:  i % 2 === 0 ? '1px solid var(--dimmer)' : 'none',
-                  borderBottom: i < 2 ? '1px solid var(--dimmer)' : 'none',
-                  cursor: 'default',
-                  transition: 'background 0.3s, transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s cubic-bezier(0.16,1,0.3,1)',
-                  willChange: 'transform',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = 'var(--green-faint)'
-                  e.currentTarget.querySelector('.svc-icon').style.color = 'var(--green)'
-                  e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1.2) rotate(-10deg)'
-                  e.currentTarget.querySelector('.svc-bar').style.transform = 'scaleX(1)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = 'var(--card)'
-                  e.currentTarget.querySelector('.svc-icon').style.color = 'var(--dimmer)'
-                  e.currentTarget.querySelector('.svc-icon').style.transform = ''
-                  e.currentTarget.querySelector('.svc-bar').style.transform = 'scaleX(0)'
-                  resetTilt(e.currentTarget)
-                }}
+                className="bg-zinc-900 p-8 cursor-default group/svc hover:bg-[#8fff3a]/5 transition-all duration-500 relative overflow-hidden"
+                onMouseLeave={e => resetTilt(e.currentTarget)}
                 onMouseMove={e => applyTilt(e.currentTarget, e)}
               >
-                {/* bottom accent bar */}
-                <div className="svc-bar" style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  height: '2px',
-                  background: 'linear-gradient(90deg, transparent, var(--green), transparent)',
-                  transform: 'scaleX(0)',
-                  transformOrigin: 'left center',
-                  transition: 'transform 0.4s cubic-bezier(0.16,1,0.3,1)',
-                }} />
+                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#8fff3a] to-transparent scale-x-0 group-hover/svc:scale-x-100 transition-transform duration-500 origin-left" />
 
-                <div className="svc-icon" style={{
-                  fontSize: '1.4rem', marginBottom: '1.25rem',
-                  color: 'var(--dimmer)',
-                  transition: 'color 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
-                  display: 'inline-block',
-                }}>
+                <div className="text-2xl mb-5 text-zinc-600 transition-all duration-300 group-hover/svc:text-[#8fff3a] group-hover/svc:scale-125 group-hover/svc:-rotate-12 inline-block">
                   {svc.icon}
                 </div>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.6rem', color: 'var(--white)' }}>
+                <h3 className="text-base font-bold mb-3 text-white">
                   {svc.title}
                 </h3>
-                <p style={{ fontSize: '0.85rem', lineHeight: 1.65, color: 'var(--muted)' }}>
+                <p className="text-sm leading-relaxed text-zinc-400">
                   {svc.desc}
                 </p>
               </div>
@@ -297,11 +210,11 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* ── Divider ─────────────────────────────────────────── */}
-        <div className="divider" style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }} />
+        {/* ── Divider (Simple) ─────────────────────────────────── */}
+        <div className="h-[1px] w-full bg-zinc-800 mb-20" />
 
         {/* ── Vision & Mission ────────────────────────────────── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', flexWrap: 'wrap' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {[
             {
               title: 'Visi',
@@ -315,34 +228,13 @@ export default function AboutSection() {
             <div
               key={item.title}
               ref={el => vmRef.current[i] = el}
-              style={{
-                position: 'relative',
-                paddingLeft: '1.5rem',
-                cursor: 'default',
-              }}
-              onMouseEnter={e => {
-                const bar = e.currentTarget.querySelector('.vm-bar')
-                if (bar) { bar.style.height = '100%'; bar.style.opacity = '1' }
-              }}
-              onMouseLeave={e => {
-                const bar = e.currentTarget.querySelector('.vm-bar')
-                if (bar) { bar.style.height = '30%'; bar.style.opacity = '0.4' }
-              }}
+              className="relative pl-8 group/vm"
             >
-              {/* left accent bar */}
-              <div className="vm-bar" style={{
-                position: 'absolute', left: 0, top: 0,
-                width: '2px', height: '30%',
-                background: 'var(--green)',
-                borderRadius: '2px',
-                opacity: 0.4,
-                transition: 'height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s',
-              }} />
-
-              <span className="label" style={{ display: 'block', marginBottom: '0.75rem' }}>
+              <div className="absolute left-0 top-0 w-[2px] h-[30%] bg-[#8fff3a] opacity-40 group-hover/vm:h-full group-hover/vm:opacity-100 transition-all duration-500" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold block mb-4">
                 {item.title}
               </span>
-              <p style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', fontWeight: 600, lineHeight: 1.4, color: 'var(--white)', marginBottom: '1rem' }}>
+              <p className="text-xl md:text-2xl font-semibold leading-snug text-white">
                 {item.text}
               </p>
             </div>
@@ -350,15 +242,6 @@ export default function AboutSection() {
         </div>
 
       </div>
-
-      {/* ── Inline styles for stat hover lines ──────────────────── */}
-      <style>{`
-        #about .stat-accent-line { opacity: 0; transition: opacity 0.3s; }
-        #about [style*="background: var(--green-faint)"] .stat-accent-line { opacity: 1; }
-        @media (max-width: 640px) {
-          #about [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr; }
-        }
-      `}</style>
     </section>
   )
 }
