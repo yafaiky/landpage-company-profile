@@ -8,7 +8,7 @@ const links = [
 export default function Footer() {
   return (
     <footer style={{
-      background: 'var(--bg2)',
+      background: 'var(--bg-subtle)',
       borderTop: '1px solid var(--dimmer)',
       padding: '4rem 0 2.5rem',
     }}>
@@ -16,8 +16,8 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
           {/* Brand */}
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '0.06em', color: 'var(--white)', marginBottom: '0.75rem' }}>
-              byvisco<span style={{ color: 'var(--green)' }}>.</span>
+            <div style={{ fontWeight: 800, fontSize: '1.1rem', letterSpacing: '0.06em', color: 'var(--black)', marginBottom: '0.75rem' }}>
+              byvisco<span style={{ color: 'var(--accent)' }}>.</span>
             </div>
             <p style={{ fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '22ch' }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -33,7 +33,7 @@ export default function Footer() {
                   <a href={l.href} style={{
                     fontSize: '0.82rem', color: 'var(--muted)', transition: 'color 0.2s',
                   }}
-                    onMouseEnter={e => e.currentTarget.style.color = 'var(--green)'}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
                     onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
                   >{l.label}</a>
                 </li>
@@ -51,7 +51,7 @@ export default function Footer() {
                 { icon: '◉', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing' },
               ].map(c => (
                 <li key={c.text} style={{ fontSize: '0.82rem', color: 'var(--muted)', display: 'flex', gap: '0.5rem' }}>
-                  <span style={{ color: 'var(--green)', flexShrink: 0 }}>{c.icon}</span>
+                  <span style={{ color: 'var(--accent)', flexShrink: 0 }}>{c.icon}</span>
                   {c.text}
                 </li>
               ))}
@@ -64,7 +64,7 @@ export default function Footer() {
             <a
               href="https://wa.me/6281234567890"
               target="_blank" rel="noreferrer"
-              className="btn-green"
+              className="btn-primary"
               id="footer-cta-btn"
               style={{ fontSize: '0.72rem' }}
             >
@@ -88,7 +88,7 @@ export default function Footer() {
                 fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em',
                 textTransform: 'uppercase', color: 'var(--muted)', transition: 'color 0.2s',
               }}
-                onMouseEnter={e => e.currentTarget.style.color = 'var(--green)'}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
               >{s}</a>
             ))}

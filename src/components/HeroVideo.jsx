@@ -25,7 +25,7 @@ function createParticles(container) {
     Object.assign(el.style, {
       width: `${size}px`,
       height: `${size}px`,
-      background: `rgba(143,255,58,${Math.random() * 0.35 + 0.08})`,
+      background: `rgba(0,102,255,${Math.random() * 0.35 + 0.1})`,
       left: `${x}%`,
       filter: size > 2.5 ? "blur(0.5px)" : "none",
     });
@@ -110,7 +110,7 @@ export default function HeroVideo() {
     const cy = lerped.y * 100;
 
     if (spotRef.current) {
-      spotRef.current.style.background = `radial-gradient(ellipse 40% 35% at ${cx}% ${cy}%, rgba(143,255,58,0.06) 0%, transparent 75%)`;
+      spotRef.current.style.background = `radial-gradient(ellipse 40% 35% at ${cx}% ${cy}%, rgba(0,102,255,0.04) 0%, transparent 75%)`;
     }
 
     if (glowRef.current) {
@@ -119,7 +119,7 @@ export default function HeroVideo() {
       const dist = Math.sqrt(dx * dx + dy * dy);
       const intensity = dist * 0.8;
       const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-      glowRef.current.style.background = `linear-gradient(${angle}deg, rgba(143,255,58,${intensity * 0.15}) 0%, transparent 60%)`;
+      glowRef.current.style.background = `linear-gradient(${angle}deg, rgba(0,102,255,${intensity * 0.1}) 0%, transparent 60%)`;
     }
 
     if (videoRef.current) {
@@ -170,7 +170,7 @@ export default function HeroVideo() {
     <section
       ref={heroRef}
       id="hero"
-      className="relative w-full h-[100svh] overflow-hidden bg-[#0a0b09] cursor-crosshair group"
+      className="relative w-full h-[100svh] overflow-hidden bg-[var(--bg)] cursor-crosshair group"
     >
       {/* ── Video Background ────────────────────────────────── */}
       <video
@@ -184,10 +184,13 @@ export default function HeroVideo() {
         <source src={heroVideo} type="video/mp4" />
       </video>
 
+      {/* ── Top Scrim (For Navbar visibility) ───────────────── */}
+      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black/20 to-transparent z-[6] pointer-events-none" />
+
       {/* ── Gradient Overlay ────────────────────────────────── */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 z-[5] bg-gradient-to-b from-[#0a0b09]/60 via-transparent to-[#0a0b09]"
+        className="absolute inset-0 z-[5] bg-gradient-to-b from-[var(--bg)]/60 via-[var(--bg)]/30 to-[var(--bg)]"
       />
 
       {/* ── Spotlight & Glow (Controlled by RAF) ───────────── */}
@@ -198,29 +201,31 @@ export default function HeroVideo() {
       <div ref={particleBox} className="absolute inset-0 pointer-events-none z-[8]" />
 
       {/* ── Scanlines ───────────────────────────────────────── */}
-      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#8fff3a]/40 to-transparent z-10" />
-      <div className="absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#8fff3a]/20 to-transparent z-10 animate-[scanline_8s_linear_infinite] pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0066ff]/20 to-transparent z-10" />
+      <div className="absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0066ff]/10 to-transparent z-10 animate-[scanline_8s_linear_infinite] pointer-events-none" />
 
       {/* ── Content ─────────────────────────────────────────── */}
       <div className="container relative z-20 h-full flex flex-col justify-center items-center text-center">
 
-        <div ref={badgeRef} className="mb-8">
-          <span className="tag">lorem ipsum dolor sit amet</span>
+        <div ref={badgeRef} className="mb-8 scale-110">
+          <span className="px-4 py-1.5 rounded-full border border-black/5 bg-white/90 text-slate-900 text-[10px] font-bold tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
+            lorem ipsum dolor sit amet
+          </span>
         </div>
 
-        <h1 ref={h1Ref} className="heading-display mb-6 max-w-[15ch]">
-          Lorem ipsum <span className="text-[#8fff3a] glow-text"> dolor sit </span> amet
+        <h1 ref={h1Ref} className="heading-display mb-8 max-w-[15ch] text-[var(--black)] drop-shadow-sm !text-5xl md:!text-7xl lg:!text-8xl">
+          Lorem ipsum <span className="text-[var(--accent)]"> dolor sit </span> amet
         </h1>
 
-        <p ref={subRef} className="body-copy max-w-[45ch] mb-12">
+        <p ref={subRef} className="text-slate-700 text-base md:text-xl max-w-[48ch] mb-12 font-medium leading-relaxed">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
         </p>
 
         <div ref={ctaRef} className="flex flex-col sm:flex-row justify-center gap-5">
-          <a href="#about" className="btn-green">
+          <a href="#about" className="btn-primary">
             Lorem ipsum <span className="ml-2 inline-block animate-bounce">↓</span>
           </a>
-          <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="btn-outline">
+          <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="px-9 py-4 rounded-full border-2 border-[var(--black)]/10 bg-white/40 backdrop-blur-md text-[var(--black)] font-bold text-[11px] uppercase tracking-widest transition-all duration-300 hover:bg-white/80 hover:border-[var(--black)] hover:-translate-y-1">
             Lorem ipsum
           </a>
         </div>
@@ -231,10 +236,10 @@ export default function HeroVideo() {
         ref={scrollRef}
         className="absolute bottom-10 right-6 md:right-12 z-30 flex flex-col items-center gap-3"
       >
-        <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-500 [writing-mode:vertical-lr]">
+        <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400 [writing-mode:vertical-lr]">
           Scroll
         </span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-[#8fff3a] to-transparent animate-pulse" />
+        <div className="w-[1px] h-12 bg-gradient-to-b from-[#0066ff] to-transparent animate-pulse" />
       </div>
 
       {/* ── Custom Scanline Keyframe ────────────────────────── */}

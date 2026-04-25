@@ -89,16 +89,16 @@ export default function PricelistSection() {
     <section
       ref={sectionRef}
       id="pricelist"
-      className="section-pad bg-[#11120f]" // Menggunakan --bg2
+      className="section-pad bg-[var(--bg-subtle)]" 
     >
       <div className="container">
 
         {/* ── Header ─────────────────────────────────────────── */}
         <div ref={headRef} className="mb-16 md:mb-24">
           <p className="label mb-4 opacity-60">02 — Paket Bundling</p>
-          <h2 className="heading-xl max-w-[18ch]">
+          <h2 className="heading-xl max-w-[18ch] text-black">
             Lorem ipsum <br />
-            <span className="text-[#8fff3a]">Lorem ipsum.</span>
+            <span className="text-[#0066ff]">Lorem ipsum.</span>
           </h2>
         </div>
 
@@ -111,38 +111,38 @@ export default function PricelistSection() {
               className={`
                 relative p-8 rounded-2xl transition-all duration-500 group
                 ${plan.popular
-                  ? 'bg-[#8fff3a]/5 border border-[#8fff3a]/30 shadow-[0_0_40px_rgba(143,255,58,0.05)]'
-                  : 'bg-[#161714] border border-white/5 hover:border-[#8fff3a]/30'
+                  ? 'bg-white border-2 border-[var(--accent)] shadow-[0_30px_60px_-10px_rgba(0,90,230,0.15)]'
+                  : 'bg-white border border-black/5 hover:border-[var(--accent)]/30'
                 }
-                hover:-translate-y-3 hover:shadow-2xl hover:shadow-black/50
+                hover:-translate-y-3 hover:shadow-xl hover:shadow-black/5
               `}
             >
               {/* Most Popular Tag */}
               {plan.popular && (
                 <div className="absolute -top-3 left-8">
-                  <span className="tag shadow-lg shadow-[#8fff3a]/20">Most Popular</span>
+                  <span className="bg-black text-white text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">Most Popular</span>
                 </div>
               )}
 
               {/* Plan Title */}
               <p className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-6 
-                ${plan.popular ? 'text-[#8fff3a]' : 'text-zinc-500'}`}>
+                ${plan.popular ? 'text-[#0066ff]' : 'text-zinc-400'}`}>
                 {plan.name}
               </p>
 
               <p className={`text-xl md:text-3xl font-black tracking-tighter 
-                ${plan.popular ? 'text-[#8fff3a]' : 'text-white'}`}>
+                ${plan.popular ? 'text-[#0066ff]' : 'text-black'}`}>
                 {plan.title}
               </p>
 
-              <p className="text-sm text-zinc-400 leading-relaxed mb-8 h-12">
+              <p className="text-sm text-zinc-500 leading-relaxed mb-8 h-12">
                 {plan.desc}
               </p>
 
               {/* Price Tag */}
               <div className="flex items-baseline gap-2 mb-4">
                 <span className={`text-4xl md:text-5xl font-black tracking-tighter 
-                  ${plan.popular ? 'text-[#8fff3a]' : 'text-white'}`}>
+                  ${plan.popular ? 'text-[#0066ff]' : 'text-black'}`}>
                   {plan.price}
                 </span>
               </div>
@@ -151,14 +151,14 @@ export default function PricelistSection() {
 
               {/* Divider */}
               <div className={`h-[1px] w-full mb-8 transition-colors duration-500
-                ${plan.popular ? 'bg-[#8fff3a]/20' : 'bg-white/5 group-hover:bg-[#8fff3a]/20'}`}
+                ${plan.popular ? 'bg-[#0066ff]/10' : 'bg-black/5 group-hover:bg-[#0066ff]/10'}`}
               />
 
               {/* Features List */}
               <ul className="space-y-4 mb-10">
                 {plan.features.map(f => (
-                  <li key={f} className="flex items-start gap-3 text-[13px] text-zinc-300 font-medium">
-                    <span className="text-[#8fff3a] mt-0.5 font-bold">✓</span>
+                  <li key={f} className="flex items-start gap-3 text-[13px] text-zinc-600 font-medium">
+                    <span className="text-[#0066ff] mt-0.5 font-bold">✓</span>
                     {f}
                   </li>
                 ))}
@@ -173,8 +173,8 @@ export default function PricelistSection() {
                   flex items-center justify-center gap-2 w-full py-4 rounded-xl
                   text-[11px] font-black uppercase tracking-widest transition-all duration-300
                   ${plan.popular
-                    ? 'bg-[#8fff3a] text-[#0a0b09] hover:bg-white'
-                    : 'bg-transparent border border-[#8fff3a]/30 text-white hover:bg-[#8fff3a] hover:text-[#0a0b09] hover:border-[#8fff3a]'
+                    ? 'bg-black text-white hover:bg-[#0066ff]'
+                    : 'bg-transparent border border-black/10 text-black hover:bg-black hover:text-white hover:border-black'
                   }
                 `}
               >

@@ -52,7 +52,7 @@ export default function WhatsAppFloat() {
         {/* ── Ripple Effect ── */}
         <div 
           ref={rippleRef} 
-          className="absolute inset-0 rounded-full bg-[#25d366]/40 origin-center pointer-events-none" 
+          className="absolute inset-0 rounded-full bg-[#0066ff]/30 origin-center pointer-events-none" 
         />
 
         {/* ── Button ── */}
@@ -63,11 +63,11 @@ export default function WhatsAppFloat() {
           aria-label="Chat on WhatsApp"
           className="
             relative w-[56px] h-[56px] rounded-full 
-            bg-gradient-to-br from-[#25d366] to-[#128c7e] 
-            shadow-[0_10px_30px_rgba(37,211,102,0.4)] 
+            bg-gradient-to-br from-[#0066ff] to-[#0052cc] 
+            shadow-[0_10px_30px_rgba(0,102,255,0.3)] 
             flex items-center justify-center 
             border-none cursor-pointer transition-shadow duration-300
-            hover:shadow-[0_15px_40px_rgba(37,211,102,0.5)]
+            hover:shadow-[0_15px_40px_rgba(0,102,255,0.4)]
           "
         >
           <svg 
