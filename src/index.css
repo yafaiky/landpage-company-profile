@@ -8,11 +8,11 @@
   --card: #ffffff;
   
   /* Brand Blue - Creative Agency Feel */
-  --accent: #0052cc; /* Solid high-contrast blue */
-  --accent-dim: #003d99;
-  --accent-faint: rgba(0, 82, 204, 0.05);
+  --accent: #003399; /* Solid high-contrast dark blue */
+  --accent-dim: #002673;
+  --accent-faint: rgba(0, 51, 153, 0.05);
   --accent-border: rgba(0, 0, 0, 0.08);
-  --accent-glow: rgba(0, 82, 204, 0.1);
+  --accent-glow: rgba(0, 51, 153, 0.1);
 
   /* Text & Accents */
   --black: #0f172a; 
@@ -120,6 +120,19 @@
     width: fit-content;
     animation-name: marquee;
     animation-duration: 40s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-sm;
+  }
+}   animation-duration: 40s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }

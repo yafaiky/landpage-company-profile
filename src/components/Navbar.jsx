@@ -73,7 +73,7 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12 transition-all duration-500 ${
           scrolled 
-            ? 'bg-[var(--bg)]/90 backdrop-blur-xl border-b border-black/5 shadow-sm' 
+            ? 'bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm' 
             : 'bg-transparent border-b border-transparent'
         }`}
       >
@@ -83,7 +83,9 @@ export default function Navbar() {
           className="relative z-[60] flex items-center gap-1.5 group"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
-          <span className="text-xl md:text-2xl font-black tracking-tighter text-black transition-colors duration-300">
+          <span className={`text-xl md:text-2xl font-black tracking-tighter transition-colors duration-300 ${
+            scrolled || open || location.pathname !== '/' ? 'text-black' : 'text-white'
+          }`}>
             BYVISCO<span className="text-[var(--accent)]">.</span>
           </span>
           <span className="inline-block text-[8px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-black text-white bg-[var(--accent)] px-1.5 md:px-2 py-0.5 rounded-[3px] md:rounded-[4px] transform translate-y-[-1px]">
@@ -97,14 +99,14 @@ export default function Navbar() {
           className="relative z-[60] flex flex-col justify-center items-end gap-[6px] w-10 h-10 group"
           aria-label="Toggle menu"
         >
-          <span className={`block h-[1.5px] bg-black rounded-full transition-all duration-300 ${
-            open ? 'w-8 bg-[var(--accent)] rotate-45 translate-y-[7.5px]' : 'w-8'
+          <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${
+            open ? 'w-8 bg-[var(--accent)] rotate-45 translate-y-[7.5px]' : `w-8 ${scrolled || location.pathname !== '/' ? 'bg-black' : 'bg-white'}`
           }`} />
-          <span className={`block h-[1.5px] bg-black rounded-full transition-all duration-300 ${
-            open ? 'w-0 opacity-0' : 'w-5 group-hover:w-8'
+          <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${
+            open ? 'w-0 opacity-0' : `w-5 group-hover:w-8 ${scrolled || location.pathname !== '/' ? 'bg-black' : 'bg-white'}`
           }`} />
-          <span className={`block h-[1.5px] bg-black rounded-full transition-all duration-300 ${
-            open ? 'w-8 bg-[var(--accent)] -rotate-45 -translate-y-[7.5px]' : 'w-8'
+          <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${
+            open ? 'w-8 bg-[var(--accent)] -rotate-45 -translate-y-[7.5px]' : `w-8 ${scrolled || location.pathname !== '/' ? 'bg-black' : 'bg-white'}`
           }`} />
         </button>
       </nav>

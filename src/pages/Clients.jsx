@@ -24,7 +24,7 @@ export default function Clients() {
       {/* Hero */}
       <section ref={heroRef} className="container mx-auto px-4 sm:px-8 py-16 md:py-24 flex flex-col items-center text-center relative">
         {/* Subtle blue glow background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vh] bg-[var(--accent)] opacity-[0.02] blur-[140px] rounded-full pointer-events-none z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vh] bg-blue-900 opacity-[0.03] blur-[160px] rounded-full pointer-events-none z-0" />
 
         <div className="relative z-10 flex flex-col items-center">
           <p className="text-[var(--accent)] text-xs md:text-sm font-bold tracking-[0.25em] uppercase mb-6">
@@ -32,9 +32,9 @@ export default function Clients() {
           </p>
           <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-[-0.03em] text-black max-w-5xl leading-[1.05] mb-8">
             Lorem ipsum dolor sit amet <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-[var(--accent)] to-[#0066ff]">Lorem ipsum dolor sit amet.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-[var(--accent)] to-[var(--accent-dim)]">Lorem ipsum dolor sit amet.</span>
           </h1>
-          <p className="text-base md:text-lg text-zinc-500 max-w-2xl leading-relaxed">
+          <p className="text-base md:text-lg max-w-2xl leading-relaxed font-medium text-transparent bg-clip-text bg-gradient-to-r from-black via-zinc-900 to-[var(--accent)]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.
           </p>
         </div>
@@ -64,3 +64,4 @@ export default function Clients() {
     </main>
   )
 }
+

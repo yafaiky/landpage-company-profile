@@ -28,7 +28,7 @@ const services = [
         <circle cx="24" cy="24" r="3" fill="currentColor" />
       </svg>
     ),
-    accent: '#0066ff',
+    accent: '#003399',
   },
   {
     id: 'sosmed',
@@ -51,7 +51,7 @@ const services = [
         <path d="M16 24l6 6 10-12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    accent: '#0052cc',
+    accent: '#002673',
   },
   {
     id: 'yearbook',
@@ -76,7 +76,7 @@ const services = [
         <path d="M31 35l1.5 1.5L35 33" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    accent: '#003d99',
+    accent: '#001a4d',
   },
 ]
 
@@ -117,7 +117,7 @@ export default function ServicesSection() {
     const cy = rect.top + rect.height / 2
     const dx = (e.clientX - cx) / (rect.width / 2)
     const dy = (e.clientY - cy) / (rect.height / 2)
-    el.style.transform = `perspective(700px) rotateY(${dx * 7}deg) rotateX(${-dy * 5}deg) translateY(-6px)`
+    el.style.transform = `perspective(1000px) rotateY(${dx * 3.5}deg) rotateX(${-dy * 2.5}deg) translateY(-6px)`
   }
   const handleMouseLeave = (el) => {
     el.style.transform = ''
@@ -134,7 +134,7 @@ export default function ServicesSection() {
       {/* Ambient blobs */}
       <div
         className="absolute top-[-8%] left-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none blur-[120px] opacity-[0.05]"
-        style={{ background: 'radial-gradient(circle, #0066ff 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, #003399 0%, transparent 70%)' }}
       />
       <div
         className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none blur-[100px] opacity-[0.04]"
@@ -148,7 +148,7 @@ export default function ServicesSection() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <h2 className="heading-xl max-w-[22ch] text-black leading-[1.1]">
               Apa yang bisa{' '}
-              <span className="text-[#0066ff]">kami lakukan</span>{' '}
+              <span className="text-[#003399]">kami lakukan</span>{' '}
               untukmu?
             </h2>
             <p className="body-copy max-w-[38ch] lg:text-right">

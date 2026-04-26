@@ -23,7 +23,7 @@ const terms = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.',
     ],
-    color: '#0066ff',
+    color: '#003399',
   },
   {
     id: 'revisi',
@@ -165,7 +165,7 @@ export default function TermsSection() {
       {/* Ambient blob */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none blur-[150px] opacity-[0.06]"
-        style={{ background: 'radial-gradient(ellipse, #0066ff 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(ellipse, #003399 0%, transparent 70%)' }}
       />
 
       <div className="container relative z-10">
@@ -175,7 +175,7 @@ export default function TermsSection() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <h2 className="heading-xl max-w-[20ch] text-black leading-[1.1]">
               lorem ipsum dolor sit amet{' '}
-              <span className="text-[#0066ff]">lorem ipsum dolor sit amet.</span>
+              <span className="text-[#003399]">lorem ipsum dolor sit amet.</span>
             </h2>
             <p className="body-copy max-w-[42ch] lg:text-right">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
