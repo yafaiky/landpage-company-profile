@@ -59,7 +59,7 @@ export default function WhatsAppFloat() {
         <button
           ref={btnRef}
           id="whatsapp-float-btn"
-          onClick={() => window.open('https://wa.me/6281234567890', '_blank')}
+          onClick={() => window.open('https://api.whatsapp.com/send?phone=6281234567890', '_blank')}
           aria-label="Chat on WhatsApp"
           className="
             relative w-[56px] h-[56px] rounded-full 
