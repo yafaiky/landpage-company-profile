@@ -89,16 +89,17 @@ export default function PricelistSection() {
     <section
       ref={sectionRef}
       id="pricelist"
-      className="section-pad bg-[var(--bg-subtle)]" 
+      className="section-pad"
+      style={{ background: 'linear-gradient(135deg, #2A2E8A 0%, #2D4BCE 100%)' }}
     >
       <div className="container">
 
         {/* ── Header ─────────────────────────────────────────── */}
         <div ref={headRef} className="mb-16 md:mb-24">
-          <p className="label mb-4 opacity-60">02 — Paket Bundling</p>
-          <h2 className="heading-xl max-w-[18ch] text-black">
+          <p className="label mb-4 text-[#a8c4ff]">02 — Paket Bundling</p>
+          <h2 className="heading-xl max-w-[18ch] text-white">
             Lorem ipsum <br />
-            <span className="text-[#003399]">Lorem ipsum.</span>
+            <span className="text-[#a8c4ff]">Lorem ipsum.</span>
           </h2>
         </div>
 
@@ -189,9 +190,9 @@ export default function PricelistSection() {
 
         {/* ── Footer Note ────────────────────────────────────── */}
         <div className="mt-16 text-center">
-          <p className="text-xs text-zinc-500 font-medium tracking-wide">
+          <p className="text-xs text-white/60 font-medium tracking-wide">
             Semua harga dapat disesuaikan. <br className="md:hidden" />
-            <span className="text-zinc-400">Konsultasi gratis via WhatsApp.</span>
+            <span className="text-white/40">Konsultasi gratis via WhatsApp.</span>
           </p>
         </div>
       </div>
