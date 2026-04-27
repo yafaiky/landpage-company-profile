@@ -49,7 +49,7 @@ export default function Clients() {
             </span>
           </h1>
 
-          <p className="text-base md:text-lg max-w-2xl leading-relaxed font-medium text-blue-100">
+          <p className="text-base md:text-lg max-w-2xl leading-relaxed font-medium text-black/70">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.
           </p>
@@ -77,7 +77,8 @@ export default function Clients() {
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-black text-white font-bold text-xs md:text-sm tracking-[0.05em] uppercase hover:bg-[var(--accent)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
-            Lorem ipsum dolor sit amet <span className="text-base leading-none">↗</span>
+            Lorem ipsum dolor sit amet{" "}
+            <span className="text-base leading-none">↗</span>
           </a>
         </div>
       </section>

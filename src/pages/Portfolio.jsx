@@ -49,7 +49,7 @@ export default function Portfolio() {
             </span>
           </h1>
 
-          <p className="text-base md:text-lg max-w-2xl leading-relaxed font-medium text-blue-100">
+          <p className="text-base md:text-lg max-w-2xl leading-relaxed font-medium text-black/70">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.
           </p>
