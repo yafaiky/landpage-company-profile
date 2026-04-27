@@ -89,16 +89,17 @@ export default function PricelistSection() {
     <section
       ref={sectionRef}
       id="pricelist"
-      className="section-pad bg-[var(--bg-subtle)]" 
+      className="section-pad"
+      style={{ background: 'linear-gradient(135deg, #2A2E8A 0%, #2D4BCE 100%)' }}
     >
       <div className="container">
 
         {/* ── Header ─────────────────────────────────────────── */}
         <div ref={headRef} className="mb-16 md:mb-24">
-          <p className="label mb-4 opacity-60">02 — Paket Bundling</p>
-          <h2 className="heading-xl max-w-[18ch] text-black">
+          <p className="label mb-4 text-[#a8c4ff]">02 — Paket Bundling</p>
+          <h2 className="heading-xl max-w-[18ch] text-white">
             Lorem ipsum <br />
-            <span className="text-[#0066ff]">Lorem ipsum.</span>
+            <span className="text-[#B4FF2EFF]">Lorem ipsum.</span>
           </h2>
         </div>
 
@@ -126,12 +127,12 @@ export default function PricelistSection() {
 
               {/* Plan Title */}
               <p className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-6 
-                ${plan.popular ? 'text-[#0066ff]' : 'text-zinc-400'}`}>
+                ${plan.popular ? 'text-[#003399]' : 'text-zinc-400'}`}>
                 {plan.name}
               </p>
 
               <p className={`text-xl md:text-3xl font-black tracking-tighter 
-                ${plan.popular ? 'text-[#0066ff]' : 'text-black'}`}>
+                ${plan.popular ? 'text-[#003399]' : 'text-black'}`}>
                 {plan.title}
               </p>
 
@@ -142,7 +143,7 @@ export default function PricelistSection() {
               {/* Price Tag */}
               <div className="flex items-baseline gap-2 mb-4">
                 <span className={`text-4xl md:text-5xl font-black tracking-tighter 
-                  ${plan.popular ? 'text-[#0066ff]' : 'text-black'}`}>
+                  ${plan.popular ? 'text-[#003399]' : 'text-black'}`}>
                   {plan.price}
                 </span>
               </div>
@@ -151,14 +152,14 @@ export default function PricelistSection() {
 
               {/* Divider */}
               <div className={`h-[1px] w-full mb-8 transition-colors duration-500
-                ${plan.popular ? 'bg-[#0066ff]/10' : 'bg-black/5 group-hover:bg-[#0066ff]/10'}`}
+                ${plan.popular ? 'bg-[#003399]/10' : 'bg-black/5 group-hover:bg-[#003399]/10'}`}
               />
 
               {/* Features List */}
               <ul className="space-y-4 mb-10">
                 {plan.features.map(f => (
                   <li key={f} className="flex items-start gap-3 text-[13px] text-zinc-600 font-medium">
-                    <span className="text-[#0066ff] mt-0.5 font-bold">✓</span>
+                    <span className="text-[#003399] mt-0.5 font-bold">✓</span>
                     {f}
                   </li>
                 ))}
@@ -173,7 +174,7 @@ export default function PricelistSection() {
                   flex items-center justify-center gap-2 w-full py-4 rounded-xl
                   text-[11px] font-black uppercase tracking-widest transition-all duration-300
                   ${plan.popular
-                    ? 'bg-black text-white hover:bg-[#0066ff]'
+                    ? 'bg-black text-white hover:bg-[#003399]'
                     : 'bg-transparent border border-black/10 text-black hover:bg-black hover:text-white hover:border-black'
                   }
                 `}
@@ -189,9 +190,9 @@ export default function PricelistSection() {
 
         {/* ── Footer Note ────────────────────────────────────── */}
         <div className="mt-16 text-center">
-          <p className="text-xs text-zinc-500 font-medium tracking-wide">
+          <p className="text-xs text-white/60 font-medium tracking-wide">
             Semua harga dapat disesuaikan. <br className="md:hidden" />
-            <span className="text-zinc-400">Konsultasi gratis via WhatsApp.</span>
+            <span className="text-white/40">Konsultasi gratis via WhatsApp.</span>
           </p>
         </div>
       </div>
