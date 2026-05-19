@@ -28,7 +28,7 @@ const services = [
         <circle cx="24" cy="24" r="3" fill="currentColor" />
       </svg>
     ),
-    accent: '#8fff3a',
+    accent: '#0066ff',
   },
   {
     id: 'sosmed',
@@ -51,7 +51,7 @@ const services = [
         <path d="M16 24l6 6 10-12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    accent: '#3af0ff',
+    accent: '#0052cc',
   },
   {
     id: 'yearbook',
@@ -76,7 +76,7 @@ const services = [
         <path d="M31 35l1.5 1.5L35 33" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    accent: '#ff8c3a',
+    accent: '#003d99',
   },
 ]
 
@@ -129,16 +129,16 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative overflow-hidden bg-[#0a0b09] py-24 md:py-36 px-6 lg:px-12"
+      className="relative overflow-hidden bg-[var(--bg-subtle)] py-24 md:py-36"
     >
       {/* Ambient blobs */}
       <div
-        className="absolute top-[-8%] left-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none blur-[120px] opacity-[0.06]"
-        style={{ background: 'radial-gradient(circle, #8fff3a 0%, transparent 70%)' }}
+        className="absolute top-[-8%] left-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none blur-[120px] opacity-[0.05]"
+        style={{ background: 'radial-gradient(circle, #0066ff 0%, transparent 70%)' }}
       />
       <div
-        className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none blur-[100px] opacity-[0.05]"
-        style={{ background: 'radial-gradient(circle, #3af0ff 0%, transparent 70%)' }}
+        className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none blur-[100px] opacity-[0.04]"
+        style={{ background: 'radial-gradient(circle, #0052cc 0%, transparent 70%)' }}
       />
 
       <div className="container relative z-10">
@@ -146,9 +146,9 @@ export default function ServicesSection() {
         <div ref={headRef} className="mb-16 md:mb-24">
           <p className="label mb-5">Layanan Kami</p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="heading-xl max-w-[22ch] text-[var(--white)] leading-[1.1]">
+            <h2 className="heading-xl max-w-[22ch] text-black leading-[1.1]">
               Apa yang bisa{' '}
-              <span className="text-[#8fff3a]">kami lakukan</span>{' '}
+              <span className="text-[#0066ff]">kami lakukan</span>{' '}
               untukmu?
             </h2>
             <p className="body-copy max-w-[38ch] lg:text-right">
@@ -172,12 +172,12 @@ export default function ServicesSection() {
                 {/* Card Header — always visible */}
                 <div
                   onClick={() => toggle(svc.id)}
-                  className="group relative rounded-2xl border cursor-pointer overflow-hidden"
+                  className="group relative rounded-2xl border cursor-pointer overflow-hidden shadow-sm"
                   style={{
                     background: isOpen
-                      ? `linear-gradient(135deg, rgba(${svc.accent === '#8fff3a' ? '143,255,58' : svc.accent === '#3af0ff' ? '58,240,255' : '255,140,58'},0.07) 0%, #161714 100%)`
-                      : '#161714',
-                    borderColor: isOpen ? svc.accent + '55' : 'rgba(248,248,242,0.06)',
+                      ? `linear-gradient(135deg, ${svc.accent}0d 0%, #ffffff 100%)`
+                      : '#ffffff',
+                    borderColor: isOpen ? svc.accent + '33' : 'rgba(0,0,0,0.04)',
                     transition: 'background 0.5s, border-color 0.4s',
                   }}
                 >
@@ -194,7 +194,7 @@ export default function ServicesSection() {
                     {/* Number */}
                     <span
                       className="hidden sm:block text-5xl md:text-6xl font-black tracking-tighter shrink-0 transition-colors duration-300"
-                      style={{ color: isOpen ? svc.accent : 'rgba(248,248,242,0.06)', fontVariantNumeric: 'tabular-nums' }}
+                      style={{ color: isOpen ? svc.accent : 'rgba(0,0,0,0.03)', fontVariantNumeric: 'tabular-nums' }}
                     >
                       {svc.number}
                     </span>
@@ -203,9 +203,9 @@ export default function ServicesSection() {
                     <div
                       className="shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500"
                       style={{
-                        background: isOpen ? svc.accent + '18' : 'rgba(248,248,242,0.04)',
-                        color: isOpen ? svc.accent : 'rgba(248,248,242,0.35)',
-                        border: `1px solid ${isOpen ? svc.accent + '40' : 'rgba(248,248,242,0.06)'}`,
+                        background: isOpen ? svc.accent + '0d' : 'rgba(0,0,0,0.02)',
+                        color: isOpen ? svc.accent : 'rgba(0,0,0,0.3)',
+                        border: `1px solid ${isOpen ? svc.accent + '20' : 'rgba(0,0,0,0.04)'}`,
                       }}
                     >
                       {svc.icon}
@@ -214,41 +214,39 @@ export default function ServicesSection() {
                     {/* Text */}
                     <div className="flex-1 min-w-0">
                       <h3
-                        className="text-lg md:text-2xl font-bold text-[var(--white)] mb-1 transition-colors duration-300 group-hover:text-[var(--white)]"
+                        className="text-sm md:text-lg font-bold text-black mb-1 transition-colors duration-300 group-hover:text-black"
                       >
                         {svc.title}
                       </h3>
-                      <p className="text-sm text-[var(--muted)] hidden sm:block">{svc.short}</p>
+                      <p className="text-sm text-zinc-500 hidden sm:block">{svc.short}</p>
                     </div>
 
                     {/* Price Badge */}
-                    <div className="hidden md:flex flex-col items-end shrink-0 mr-2">
+                    <div className="hidden md:flex flex-col items-end shrink-0">
                       <span
                         className="text-lg md:text-xl font-black tracking-tight transition-colors duration-300"
                         style={{ color: svc.accent }}
                       >
                         {svc.price}
                       </span>
-                      <span className="text-[10px] text-[rgba(248,248,242,0.3)] font-medium mt-0.5">
+                      <span className="text-[10px] text-zinc-400 font-medium mt-0.5">
                         mulai dari
                       </span>
                     </div>
 
-                    {/* Toggle Arrow */}
+                    {/* Dropdown Icon */}
                     <div
-                      className="shrink-0 w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500"
+                      className="shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-500"
                       style={{
-                        background: isOpen ? svc.accent : 'transparent',
-                        borderColor: isOpen ? svc.accent : 'rgba(248,248,242,0.12)',
-                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                        color: isOpen ? '#0a0b09' : 'rgba(248,248,242,0.5)',
+                        transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)',
+                        color: isOpen ? svc.accent : 'rgba(0,0,0,0.15)',
                       }}
                     >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9l6 6 6-6" />
                       </svg>
                     </div>
+
                   </div>
 
                   {/* Expandable Detail */}
@@ -261,7 +259,7 @@ export default function ServicesSection() {
                   >
                     <div
                       className="mx-7 md:mx-8 mb-8 pt-2 border-t"
-                      style={{ borderColor: 'rgba(248,248,242,0.06)' }}
+                      style={{ borderColor: 'rgba(0,0,0,0.04)' }}
                     >
                       <div className="flex flex-col md:flex-row gap-8 pt-6">
                         {/* Description + Price */}
@@ -313,11 +311,11 @@ export default function ServicesSection() {
                             {svc.features.map((feat) => (
                               <li
                                 key={feat}
-                                className="flex items-center gap-3 text-sm text-[var(--white)]"
+                                className="flex items-center gap-3 text-sm text-zinc-700"
                               >
                                 <span
                                   className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center"
-                                  style={{ background: svc.accent + '20', color: svc.accent }}
+                                  style={{ background: svc.accent + '15', color: svc.accent }}
                                 >
                                   <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
                                     <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

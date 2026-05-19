@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -41,7 +41,7 @@ function applyTilt(el, e) {
   const dx = (e.clientX - cx) / (rect.width / 2)
   const dy = (e.clientY - cy) / (rect.height / 2)
   el.style.transform = `perspective(600px) rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg) scale(1.03)`
-  el.style.boxShadow = `${-dx * 12}px ${dy * 10}px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(143,255,58,0.18)`
+  el.style.boxShadow = `${-dx * 12}px ${dy * 10}px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,102,255,0.1)`
   el.style.zIndex = '2'
 }
 
@@ -60,6 +60,7 @@ export default function AboutSection() {
   const svcRef = useRef([])
   const vmRef = useRef([])
   const dividerRef = useRef(null)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -128,12 +129,12 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative overflow-hidden bg-zinc-950 py-24 md:py-32 px-6 lg:px-12"
+      className="relative overflow-hidden bg-white py-24 md:py-32 px-4 lg:px-8"
     >
-      {/* Subtle green ambient blob */}
+      {/* Subtle blue ambient blob */}
       <div
-        className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full pointer-events-none blur-[100px] opacity-20"
-        style={{ background: 'radial-gradient(circle, #8fff3a 0%, transparent 70%)' }}
+        className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full pointer-events-none blur-[100px] opacity-[0.07]"
+        style={{ background: 'radial-gradient(circle, #0066ff 0%, transparent 70%)' }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -144,31 +145,42 @@ export default function AboutSection() {
             <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-5">
               01 — Tentang Kami
             </p>
-            <h2 ref={headRef} className="text-4xl md:text-6xl font-bold leading-[1.1] text-white mb-6">
+            <h2 ref={headRef} className="text-4xl md:text-6xl font-bold leading-[1.1] text-black mb-6">
               Lorem ipsum<br />
-              <span className="text-[#8fff3a]">Lorem ipsum dolor sit amet consectetur.</span>
+              <span className="text-[#0066ff]">Lorem ipsum dolor sit amet consectetur.</span>
             </h2>
-            <p ref={bodyRef} className="text-zinc-400 text-lg leading-relaxed max-w-[44ch]">
-              Byvisco adalah creative agency berbasis di Jakarta Timur yang berfokus pada branding, visual identity, dan konten kreatif untuk UMKM dan bisnis lokal. Kami percaya bahwa setiap bisnis — sekecil apapun — berhak tampil profesional dan punya identitas yang kuat. Didukung oleh tim muda berpengalaman di industri media dan produksi, kami siap menjadi mitra kreatif jangka panjang bisnis kamu.
+            <p ref={bodyRef} className="text-zinc-600 text-lg leading-relaxed max-w-[44ch]">
+              Byvisco adalah creative agency berbasis di Jakarta Timur yang berfokus pada branding, visual identity, dan konten kreatif untuk UMKM dan bisnis lokal.
+              <span className={isExpanded ? 'inline' : 'hidden md:inline'}>
+                {" "}Kami percaya bahwa setiap bisnis — sekecil apapun — berhak tampil profesional dan punya identitas yang kuat. Didukung oleh tim muda berpengalaman di industri media dan produksi, kami siap menjadi mitra kreatif jangka panjang bisnis kamu.
+              </span>
+              {!isExpanded && (
+                <button
+                  onClick={() => setIsExpanded(true)}
+                  className="md:hidden text-[#0066ff] font-semibold ml-1 hover:text-[#0052cc] transition-colors"
+                >
+                  ... Baca Selengkapnya
+                </button>
+              )}
             </p>
           </div>
 
           {/* ── Stats grid ──────────────────────────────────── */}
-          <div className="grid grid-cols-2 gap-[1px] bg-zinc-800/50 border border-zinc-800 rounded-xl overflow-hidden self-start min-w-[300px]">
+          <div className="grid grid-cols-2 gap-[1px] bg-zinc-200 border border-zinc-200 rounded-xl overflow-hidden self-start min-w-[300px]">
             {stats.map((s, i) => (
               <div
                 key={s.lbl}
                 ref={el => statsRef.current[i] = el}
-                className="p-6 bg-zinc-900 group/stat hover:bg-[#8fff3a]/5 transition-colors duration-300 relative"
+                className="p-6 bg-white group/stat hover:bg-[#0066ff]/5 transition-colors duration-300 relative"
               >
-                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#8fff3a] to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#0066ff] to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300" />
                 <div
                   ref={el => statNumRef.current[i] = el}
-                  className="text-3xl font-extrabold text-[#8fff3a] tracking-tight leading-none"
+                  className="text-3xl font-extrabold text-[#0066ff] tracking-tight leading-none"
                 >
                   0{s.suffix}
                 </div>
-                <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mt-2">
+                <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-2">
                   {s.lbl}
                 </div>
               </div>
@@ -179,30 +191,32 @@ export default function AboutSection() {
         {/* ── Divider ─────────────────────────────────────────── */}
         <div
           ref={dividerRef}
-          className="h-[1px] w-full bg-gradient-to-r from-[#8fff3a] to-transparent opacity-30 mb-20"
+          className="h-[1px] w-full bg-gradient-to-r from-[#0066ff] to-transparent opacity-20 mb-20"
         />
 
         {/* ── Services grid ───────────────────────────────────── */}
         <div className="mb-20">
           <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold mb-8">Lorem ipsum dolor sit</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-zinc-800/50 border border-zinc-800 rounded-xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {services.map((svc, i) => (
               <div
                 key={svc.title}
                 ref={el => svcRef.current[i] = el}
-                className="bg-zinc-900 p-8 cursor-default group/svc hover:bg-[#8fff3a]/5 transition-all duration-500 relative overflow-hidden"
+                className="bg-white p-8 rounded-2xl border border-black/5 cursor-default group/svc hover:bg-[#005ae6]/5 active:bg-[#005ae6]/10 transition-all duration-500 relative overflow-hidden shadow-sm"
                 onMouseLeave={e => resetTilt(e.currentTarget)}
                 onMouseMove={e => applyTilt(e.currentTarget, e)}
               >
-                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#8fff3a] to-transparent scale-x-0 group-hover/svc:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#005ae6] to-transparent scale-x-0 group-hover/svc:scale-x-100 transition-transform duration-500 origin-left" />
 
-                <div className="text-2xl mb-5 text-zinc-600 transition-all duration-300 group-hover/svc:text-[#8fff3a] group-hover/svc:scale-125 group-hover/svc:-rotate-12 inline-block">
-                  {svc.icon}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="text-2xl text-slate-300 transition-all duration-300 group-hover/svc:text-[#005ae6] group-hover/svc:scale-110 group-hover/svc:-rotate-12">
+                    {svc.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900">
+                    {svc.title}
+                  </h3>
                 </div>
-                <h3 className="text-base font-bold mb-3 text-white">
-                  {svc.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-zinc-400">
+                <p className="text-sm leading-relaxed text-slate-500">
                   {svc.desc}
                 </p>
               </div>
@@ -211,7 +225,7 @@ export default function AboutSection() {
         </div>
 
         {/* ── Divider (Simple) ─────────────────────────────────── */}
-        <div className="h-[1px] w-full bg-zinc-800 mb-20" />
+        <div className="h-[1px] w-full bg-zinc-100 mb-20" />
 
         {/* ── Vision & Mission ────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -230,11 +244,11 @@ export default function AboutSection() {
               ref={el => vmRef.current[i] = el}
               className="relative pl-8 group/vm"
             >
-              <div className="absolute left-0 top-0 w-[2px] h-[30%] bg-[#8fff3a] opacity-40 group-hover/vm:h-full group-hover/vm:opacity-100 transition-all duration-500" />
-              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-bold block mb-4">
+              <div className="absolute left-0 top-0 w-[2px] h-[30%] bg-[#0066ff] opacity-20 group-hover/vm:h-full group-hover/vm:opacity-100 transition-all duration-500" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold block mb-4">
                 {item.title}
               </span>
-              <p className="text-xl md:text-2xl font-semibold leading-snug text-white">
+              <p className="text-xl md:text-2xl font-semibold leading-snug text-black">
                 {item.text}
               </p>
             </div>

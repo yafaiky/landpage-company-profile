@@ -8,73 +8,287 @@ gsap.registerPlugin(ScrollTrigger)
 const categories = ['All', 'Fotografi', 'Videografi', 'Design Sosmed', 'Reels', 'Random Thing']
 
 const portfolioItems = [
+  // === Katalog 11 → Random Thing (11 foto) ===
   {
     id: 1,
-    title: 'Lorem Ipsum Dolor',
-    category: 'Fotografi',
+    title: 'Katalog 11 – 1',
+    category: 'Random Thing',
     type: 'image',
-    img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
+    img: '/katalog-11/1.jpg',
     span: 'col-span-1 md:col-span-2 row-span-2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    date: 'Lorem Ipsum 2024',
-    client: 'Lorem Ipsum Co.'
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
   },
   {
     id: 2,
-    title: 'Lorem Ipsum Sit',
-    category: 'Videografi',
-    type: 'video',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    img: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80',
+    title: 'Katalog 11 – 2',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/2.jpg',
     span: 'col-span-1 row-span-1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    date: 'Lorem Ipsum 2024',
-    client: 'Lorem Ipsum Inc.'
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
   },
   {
     id: 3,
-    title: 'Lorem Amet Consectetur',
-    category: 'Design Sosmed',
+    title: 'Katalog 11 – 3',
+    category: 'Random Thing',
     type: 'image',
-    img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80',
+    img: '/katalog-11/3.jpg',
     span: 'col-span-1 row-span-1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    date: 'Lorem Ipsum 2024',
-    client: 'Lorem Ipsum Agency'
+    description: 'Karya dari Katalog Byyvisco 11..',
+    date: '2024',
+    client: 'Byyvisco'
   },
   {
     id: 4,
-    title: 'Lorem Dolor Amet',
-    category: 'Reels',
-    type: 'video',
-    videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80',
+    title: 'Katalog 11 – 4',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/4.jpg',
     span: 'col-span-1 row-span-2',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    date: 'Lorem Ipsum 2024',
-    client: 'Lorem Ipsum Boutique'
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
   },
   {
     id: 5,
-    title: 'Lorem Ipsum Elit',
+    title: 'Katalog 11 – 5',
     category: 'Random Thing',
     type: 'image',
-    img: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80',
+    img: '/katalog-11/5.jpg',
     span: 'col-span-1 md:col-span-2 row-span-1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    date: 'Lorem Ipsum 2024',
-    client: 'Lorem Ipsum Gallery'
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
   },
   {
     id: 6,
-    title: 'Lorem Consectetur Sed',
+    title: 'Katalog 11 – 6',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/6.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 7,
+    title: 'Katalog 11 – 7',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/7.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 8,
+    title: 'Katalog 11 – 8',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/8.jpg',
+    span: 'col-span-1 row-span-2',
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 9,
+    title: 'Katalog 11 – 9',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/9.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 10,
+    title: 'Katalog 11 – 10',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/10.jpg',
+    span: 'col-span-1 md:col-span-2 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 11,
+    title: 'Katalog 11 – 11',
+    category: 'Random Thing',
+    type: 'image',
+    img: '/katalog-11/11.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 11.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+
+  // === Katalog 34 → Design Sosmed (9 foto) ===
+  {
+    id: 12,
+    title: 'Katalog 34 – 1',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/1.jpg',
+    span: 'col-span-1 md:col-span-2 row-span-2',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 13,
+    title: 'Katalog 34 – 2',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/2.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 14,
+    title: 'Katalog 34 – 3',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/3.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 15,
+    title: 'Katalog 34 – 4',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/4.jpg',
+    span: 'col-span-1 row-span-2',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 16,
+    title: 'Katalog 34 – 5',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/5.jpg',
+    span: 'col-span-1 md:col-span-2 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 17,
+    title: 'Katalog 34 – 6',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/6.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 18,
+    title: 'Katalog 34 – 7',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/7.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 19,
+    title: 'Katalog 34 – 8',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/8.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 20,
+    title: 'Katalog 34 – 9',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/katalog-34/9.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 34.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+
+  // === Katalog 916 → Fotografi (4 foto) ===
+  {
+    id: 21,
+    title: 'Katalog 916 – 1',
     category: 'Fotografi',
     type: 'image',
-    img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+    img: '/katalog-916/1.jpg',
+    span: 'col-span-1 md:col-span-2 row-span-2',
+    description: 'Karya dari Katalog Byyvisco 916.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 22,
+    title: 'Katalog 916 – 2',
+    category: 'Fotografi',
+    type: 'image',
+    img: '/katalog-916/2.jpg',
     span: 'col-span-1 row-span-1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim.',
-    date: 'Lorem Ipsum 2024',
-    client: 'Lorem Ipsum Store'
+    description: 'Karya dari Katalog Byyvisco 916.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 23,
+    title: 'Katalog 916 – 3',
+    category: 'Fotografi',
+    type: 'image',
+    img: '/katalog-916/3.jpg',
+    span: 'col-span-1 row-span-1',
+    description: 'Karya dari Katalog Byyvisco 916.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+  {
+    id: 24,
+    title: 'Katalog 916 – 4',
+    category: 'Fotografi',
+    type: 'image',
+    img: '/katalog-916/4.jpg',
+    span: 'col-span-1 md:col-span-2 row-span-2',
+    description: 'Karya dari Katalog Byyvisco 916.',
+    date: '2024',
+    client: 'Byyvisco'
+  },
+
+  // === AI Logo → Design Sosmed ===
+  {
+    id: 25,
+    title: 'AI Logo Design',
+    category: 'Design Sosmed',
+    type: 'image',
+    img: '/ai-logo.svg',
+    span: 'col-span-1 row-span-1',
+    description: 'AI Logo Design oleh Byyvisco.',
+    date: '2024',
+    client: 'Byyvisco'
   },
 ]
 
@@ -123,7 +337,7 @@ export default function PortfolioSection() {
 
   return (
     <>
-      <section ref={sectionRef} className="py-20 md:py-32 bg-[var(--bg2)] min-h-screen">
+      <section ref={sectionRef} className="py-20 md:py-32 bg-[var(--bg)] min-h-screen">
         <div className="container mx-auto px-4 sm:px-8">
 
           {/* Interaction Buttons */}
@@ -134,11 +348,11 @@ export default function PortfolioSection() {
                 ref={el => buttonsRef.current[i] = el}
                 onClick={() => setActiveTab(cat)}
                 className={`relative px-6 py-3 rounded-full text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 overflow-hidden group border ${activeTab === cat
-                  ? 'border-[var(--green)] text-[var(--bg)] shadow-[0_4px_20px_rgba(143,255,58,0.25)]'
-                  : 'border-[var(--dimmer)] text-[var(--muted)] hover:border-[var(--green-border)] hover:text-[var(--white)]'
+                  ? 'border-[var(--accent)] text-white shadow-[0_4px_20px_rgba(0,90,230,0.2)]'
+                  : 'border-[var(--dimmer)] text-slate-500 hover:border-black hover:text-black'
                   }`}
               >
-                <div className={`absolute inset-0 bg-[var(--green)] transition-transform duration-300 ease-out z-0 ${activeTab === cat ? 'translate-y-0' : 'translate-y-[101%]'}`} />
+                <div className={`absolute inset-0 bg-[var(--accent)] transition-transform duration-300 ease-out z-0 ${activeTab === cat ? 'translate-y-0' : 'translate-y-[101%]'}`} />
                 <span className="relative z-10">{cat}</span>
               </button>
             ))}
@@ -172,20 +386,20 @@ export default function PortfolioSection() {
                 )}
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(14,15,13,0.95)] via-[rgba(14,15,13,0.4)] to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
 
                 {/* Content overlay */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                  <span className="inline-block px-3 py-1 mb-3 w-max rounded-full border border-[var(--green)] bg-[rgba(143,255,58,0.1)] text-[var(--green)] text-[0.65rem] font-bold tracking-[0.2em] uppercase backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                  <span className="inline-block px-3 py-1 mb-3 w-max rounded-full border border-[var(--accent)] bg-[rgba(0,102,255,0.15)] text-white text-[0.65rem] font-bold tracking-[0.2em] uppercase backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     {item.category}
                   </span>
-                  <h3 className="text-[var(--white)] text-2xl md:text-3xl font-extrabold leading-tight tracking-tight">
+                  <h3 className="text-white text-2xl md:text-3xl font-extrabold leading-tight tracking-tight">
                     {item.title}
                   </h3>
                 </div>
 
                 {/* Hover icon */}
-                <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.1)] backdrop-blur-md border border-[rgba(255,255,255,0.2)] flex items-center justify-center text-[var(--white)] opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
                   {item.type === 'video' ? (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
                       <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -234,7 +448,7 @@ export default function PortfolioSection() {
           onClick={closeModal}
         >
           <div
-            className="bg-[var(--card)] rounded-[30px] w-full max-w-3xl shadow-2xl animate-scale-in flex flex-col"
+            className="bg-white rounded-[30px] w-full max-w-3xl shadow-2xl animate-scale-in flex flex-col"
             style={{ maxHeight: '90vh', overflowY: 'auto' }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -256,7 +470,7 @@ export default function PortfolioSection() {
                 />
               )}
 
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--card)] pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none" />
 
               <button
                 onClick={closeModal}
@@ -271,22 +485,22 @@ export default function PortfolioSection() {
 
             {/* Modal Content */}
             <div className="p-8 md:p-12 shrink-0">
-              <div className="inline-block px-4 py-2 mb-4 rounded-full border border-[var(--green)] bg-[rgba(143,255,58,0.1)] text-[var(--green)] text-sm font-bold tracking-[0.1em] uppercase">
+              <div className="inline-block px-4 py-2 mb-4 rounded-full border border-[var(--accent)] bg-[rgba(0,102,255,0.05)] text-[var(--accent)] text-sm font-bold tracking-[0.1em] uppercase">
                 {selectedItem.category}
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--white)] mb-4 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-4 leading-tight">
                 {selectedItem.title}
               </h2>
 
-              <p className="text-[var(--muted)] mb-8">
+              <p className="text-zinc-600 mb-8">
                 {selectedItem.description}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={closeModal}
-                  className="flex-1 px-6 py-3 rounded-full border-2 border-[var(--green)] text-[var(--green)] font-bold tracking-widest uppercase transition-all duration-300 hover:bg-[rgba(143,255,58,0.1)]"
+                  className="flex-1 px-6 py-3 rounded-full border-2 border-[var(--accent)] text-[var(--accent)] font-bold tracking-widest uppercase transition-all duration-300 hover:bg-[var(--accent)] hover:text-white"
                 >
                   Tutup
                 </button>

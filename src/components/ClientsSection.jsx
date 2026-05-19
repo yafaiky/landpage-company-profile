@@ -14,7 +14,7 @@ export default function ClientsSection() {
     <section
       className="py-16 md:py-24 relative"
       style={{
-        backgroundImage: `radial-gradient(circle at 50% 0%, rgba(100, 198, 25, 0.21) 0%, transparent 70%)`,
+        backgroundImage: `radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.08) 0%, transparent 70%)`,
         backgroundColor: 'var(--bg)'
       }}
     >
@@ -38,7 +38,7 @@ export default function ClientsSection() {
           {[...clientsRow1, ...clientsRow1].map((client, i) => (
             <div
               key={i}
-              className="px-6 md:px-8 py-2 md:py-3 rounded-full border border-[var(--dimmer)] bg-white/[0.01] backdrop-blur-md text-[var(--muted)] font-bold text-[10px] md:text-xs tracking-widest hover:text-[var(--green)] hover:border-[var(--green-border)] transition-all duration-300 cursor-default"
+              className="px-6 md:px-8 py-2 md:py-3 rounded-full border border-black/5 bg-white text-slate-400 font-bold text-[10px] md:text-xs tracking-widest hover:text-[var(--accent)] hover:border-[var(--accent)]/30 hover:shadow-md transition-all duration-300 cursor-default"
             >
               {client.toUpperCase()}
             </div>
@@ -49,7 +49,7 @@ export default function ClientsSection() {
           {[...clientsRow2, ...clientsRow2].map((client, i) => (
             <div
               key={i}
-              className="px-6 md:px-8 py-2 md:py-3 rounded-full border border-[var(--dimmer)] bg-white/[0.01] backdrop-blur-md text-[var(--muted)] font-bold text-[10px] md:text-xs tracking-widest hover:text-[var(--green)] hover:border-[var(--green-border)] transition-all duration-300 cursor-default"
+              className="px-6 md:px-8 py-2 md:py-3 rounded-full border border-black/5 bg-white text-slate-400 font-bold text-[10px] md:text-xs tracking-widest hover:text-[var(--accent)] hover:border-[var(--accent)]/30 hover:shadow-md transition-all duration-300 cursor-default"
             >
               {client.toUpperCase()}
             </div>
