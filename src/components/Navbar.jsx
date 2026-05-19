@@ -1,85 +1,80 @@
-import { useRef, useState, useEffect } from "react";
-import { gsap } from "gsap";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useRef, useState, useEffect } from 'react'
+import { gsap } from 'gsap'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const overlayRef = useRef(null);
-  const itemsRef = useRef([]);
-  const tl = useRef(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const overlayRef = useRef(null)
+  const itemsRef = useRef([])
+  const tl = useRef(null)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
-    const overlay = overlayRef.current;
-    const items = itemsRef.current.filter(Boolean);
+    const overlay = overlayRef.current
+    const items = itemsRef.current.filter(Boolean)
 
-    tl.current = gsap.timeline({ paused: true });
+    tl.current = gsap.timeline({ paused: true })
     tl.current
-      .set(overlay, { display: "flex" })
-      .fromTo(
-        overlay,
+      .set(overlay, { display: 'flex' })
+      .fromTo(overlay,
         { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: "power2.out" },
+        { opacity: 1, duration: 0.4, ease: 'power2.out' }
       )
-      .fromTo(
-        items,
+      .fromTo(items,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.08, duration: 0.6, ease: "power3.out" },
-        "-=0.2",
-      );
+        { y: 0, opacity: 1, stagger: 0.08, duration: 0.6, ease: 'power3.out' },
+        '-=0.2'
+      )
 
-    return () => tl.current?.kill();
-  }, []);
+    return () => tl.current?.kill()
+  }, [])
 
   const toggleMenu = () => {
-    if (!open) {
-      tl.current?.play();
-    } else {
-      tl.current?.reverse();
+    if (!open) { 
+      tl.current?.play() 
+    } else { 
+      tl.current?.reverse() 
     }
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   const handleNav = (path, hash) => {
-    tl.current?.reverse().eventCallback("onReverseComplete", () => {
-      setOpen(false);
-      if (hash && location.pathname === "/") {
-        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    tl.current?.reverse().eventCallback('onReverseComplete', () => {
+      setOpen(false)
+      if (hash && location.pathname === '/') {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
       } else {
-        navigate(path);
-        if (hash)
-          setTimeout(() => {
-            document
-              .getElementById(hash)
-              ?.scrollIntoView({ behavior: "smooth" });
-          }, 400);
+        navigate(path)
+        if (hash) setTimeout(() => {
+          document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' })
+        }, 400)
       }
-    });
-  };
+    })
+  }
 
   const links = [
-    { label: "About", path: "/", hash: "about" },
-    { label: "Pricelist", path: "/", hash: "pricelist" },
-    { label: "Portfolio", path: "/portfolio", hash: null },
-    { label: "Our Clients", path: "/clients", hash: null },
-  ];
+    { label: 'About', path: '/', hash: 'about' },
+    { label: 'Pricelist', path: '/', hash: 'pricelist' },
+    { label: 'Portfolio', path: '/portfolio', hash: null },
+    { label: 'Our Clients', path: '/clients', hash: null },
+  ]
 
   return (
     <>
       {/* ── Navbar ────────────────────────────────────────────── */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-12 transition-all duration-500 ${
-          scrolled
-            ? "bg-white/90 backdrop-blur-xl border-b border-black/5 shadow-sm"
-            : "bg-transparent border-b border-transparent"
+          scrolled 
+            ? 'bg-[var(--bg)]/90 backdrop-blur-xl border-b border-black/5 shadow-sm' 
+            : 'bg-transparent border-b border-transparent'
         }`}
       >
         {/* Logo */}
@@ -88,13 +83,7 @@ export default function Navbar() {
           className="relative z-[60] flex items-center gap-1.5 group"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
-          <span
-            className={`text-xl md:text-2xl font-black tracking-tighter transition-colors duration-300 ${
-              scrolled || open || location.pathname !== "/"
-                ? "text-black"
-                : "text-white"
-            }`}
-          >
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-black transition-colors duration-300">
             BYVISCO<span className="text-[var(--accent)]">.</span>
           </span>
           <span className="inline-block text-[8px] md:text-[9px] uppercase tracking-[0.2em] md:tracking-[0.3em] font-black text-white bg-[var(--accent)] px-1.5 md:px-2 py-0.5 rounded-[3px] md:rounded-[4px] transform translate-y-[-1px]">
@@ -105,51 +94,39 @@ export default function Navbar() {
         {/* Hamburger Button */}
         <button
           onClick={toggleMenu}
-          className="relative z-[60] flex flex-col justify-center items-end gap-[6px] w-10 h-10 group hover:cursor-pointer"
+          className="relative z-[60] flex flex-col justify-center items-end gap-[6px] w-10 h-10 group"
           aria-label="Toggle menu"
         >
-          <span
-            className={`block h-[1.5px] rounded-full transition-all duration-300 ${
-              open
-                ? "w-8 bg-[var(--accent)] rotate-45 translate-y-[7.5px]"
-                : `w-8 ${scrolled || location.pathname !== "/" ? "bg-black" : "bg-white"}`
-            }`}
-          />
-          <span
-            className={`block h-[1.5px] rounded-full transition-all duration-300 ${
-              open
-                ? "w-0 opacity-0"
-                : `w-5 group-hover:w-8 ${scrolled || location.pathname !== "/" ? "bg-black" : "bg-white"}`
-            }`}
-          />
-          <span
-            className={`block h-[1.5px] rounded-full transition-all duration-300 ${
-              open
-                ? "w-8 bg-[var(--accent)] -rotate-45 -translate-y-[7.5px]"
-                : `w-8 ${scrolled || location.pathname !== "/" ? "bg-black" : "bg-white"}`
-            }`}
-          />
+          <span className={`block h-[1.5px] bg-black rounded-full transition-all duration-300 ${
+            open ? 'w-8 bg-[var(--accent)] rotate-45 translate-y-[7.5px]' : 'w-8'
+          }`} />
+          <span className={`block h-[1.5px] bg-black rounded-full transition-all duration-300 ${
+            open ? 'w-0 opacity-0' : 'w-5 group-hover:w-8'
+          }`} />
+          <span className={`block h-[1.5px] bg-black rounded-full transition-all duration-300 ${
+            open ? 'w-8 bg-[var(--accent)] -rotate-45 -translate-y-[7.5px]' : 'w-8'
+          }`} />
         </button>
       </nav>
 
       {/* ── Menu Overlay ──────────────────────────────────────── */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-40 hidden flex-col justify-center bg-white/98 backdrop-blur-2xl px-8 md:px-32 lg:px-48 hover:cursor-pointer"
+        className="fixed inset-0 z-40 hidden flex-col justify-center bg-white/98 backdrop-blur-2xl px-8 md:px-32 lg:px-48"
       >
         {/* Top Accent Line */}
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40" />
 
-        <p className="label mb-10 opacity-50"></p>
+        <p className="label mb-10 opacity-50">Navigation</p>
 
         <nav className="flex flex-col">
           {links.map((link, i) => (
             <div key={link.label} className="group/item overflow-hidden">
               {/* Divider */}
               <div className="h-[1px] w-full bg-black/5" />
-
+              
               <button
-                ref={(el) => (itemsRef.current[i] = el)}
+                ref={el => itemsRef.current[i] = el}
                 onClick={() => handleNav(link.path, link.hash)}
                 className="flex items-center justify-between w-full py-6 md:py-8 text-left transition-colors duration-300 group"
               >
@@ -167,9 +144,9 @@ export default function Navbar() {
 
         {/* Social Links */}
         <div className="flex gap-8 mt-12">
-          {["lorem ipsum", "lorem ipsum", "lorem ipsum"].map((s) => (
-            <a
-              key={s}
+          {['lorem ipsum', 'lorem ipsum', 'lorem ipsum'].map(s => (
+            <a 
+              key={s} 
               href="#"
               className="text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-[var(--accent)] transition-colors"
             >
@@ -179,5 +156,5 @@ export default function Navbar() {
         </div>
       </div>
     </>
-  );
+  )
 }

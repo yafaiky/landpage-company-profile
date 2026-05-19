@@ -28,7 +28,7 @@ const services = [
         <circle cx="24" cy="24" r="3" fill="currentColor" />
       </svg>
     ),
-    accent: '#006effff',
+    accent: '#0066ff',
   },
   {
     id: 'sosmed',
@@ -51,7 +51,7 @@ const services = [
         <path d="M16 24l6 6 10-12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    accent: '#B4FF2EFF',
+    accent: '#0052cc',
   },
   {
     id: 'yearbook',
@@ -76,7 +76,7 @@ const services = [
         <path d="M31 35l1.5 1.5L35 33" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    accent: '#001a4dff',
+    accent: '#003d99',
   },
 ]
 
@@ -117,7 +117,7 @@ export default function ServicesSection() {
     const cy = rect.top + rect.height / 2
     const dx = (e.clientX - cx) / (rect.width / 2)
     const dy = (e.clientY - cy) / (rect.height / 2)
-    el.style.transform = `perspective(1000px) rotateY(${dx * 3.5}deg) rotateX(${-dy * 2.5}deg) translateY(-6px)`
+    el.style.transform = `perspective(700px) rotateY(${dx * 7}deg) rotateX(${-dy * 5}deg) translateY(-6px)`
   }
   const handleMouseLeave = (el) => {
     el.style.transform = ''
@@ -129,30 +129,29 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative overflow-hidden py-24 md:py-36"
-      style={{ background: 'linear-gradient(135deg, #1F2FA6 0%, #2D4BCE 100%)' }}
+      className="relative overflow-hidden bg-[var(--bg-subtle)] py-24 md:py-36"
     >
       {/* Ambient blobs */}
       <div
-        className="absolute top-[-8%] left-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none blur-[120px] opacity-[0.12]"
-        style={{ background: 'radial-gradient(circle, #4A73F0 0%, transparent 70%)' }}
+        className="absolute top-[-8%] left-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none blur-[120px] opacity-[0.05]"
+        style={{ background: 'radial-gradient(circle, #0066ff 0%, transparent 70%)' }}
       />
       <div
-        className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none blur-[100px] opacity-[0.10]"
-        style={{ background: 'radial-gradient(circle, #4A73F0 0%, transparent 70%)' }}
+        className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none blur-[100px] opacity-[0.04]"
+        style={{ background: 'radial-gradient(circle, #0052cc 0%, transparent 70%)' }}
       />
 
       <div className="container relative z-10">
         {/* Header */}
         <div ref={headRef} className="mb-16 md:mb-24">
-          <p className="label mb-5 text-white">Layanan Kami</p>
+          <p className="label mb-5">Layanan Kami</p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="heading-xl max-w-[22ch] text-white leading-[1.1]">
+            <h2 className="heading-xl max-w-[22ch] text-black leading-[1.1]">
               Apa yang bisa{' '}
-              <span className="text-[#B4FF2E]">kami lakukan</span>{' '}
+              <span className="text-[#0066ff]">kami lakukan</span>{' '}
               untukmu?
             </h2>
-            <p className="body-copy max-w-[38ch] lg:text-right text-white/70">
+            <p className="body-copy max-w-[38ch] lg:text-right">
               Setiap layanan dirancang untuk memperkuat kehadiran brand kamu — dari identitas hingga konten harian.
             </p>
           </div>

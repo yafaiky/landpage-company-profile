@@ -110,7 +110,7 @@ export default function HeroVideo() {
     const cy = lerped.y * 100;
 
     if (spotRef.current) {
-      spotRef.current.style.background = `radial-gradient(ellipse 40% 35% at ${cx}% ${cy}%, rgba(0,82,204,0.1) 0%, transparent 75%)`;
+      spotRef.current.style.background = `radial-gradient(ellipse 40% 35% at ${cx}% ${cy}%, rgba(0,102,255,0.04) 0%, transparent 75%)`;
     }
 
     if (glowRef.current) {
@@ -119,7 +119,7 @@ export default function HeroVideo() {
       const dist = Math.sqrt(dx * dx + dy * dy);
       const intensity = dist * 0.8;
       const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-      glowRef.current.style.background = `linear-gradient(${angle}deg, rgba(0,82,204,${intensity * 0.15}) 0%, transparent 60%)`;
+      glowRef.current.style.background = `linear-gradient(${angle}deg, rgba(0,102,255,${intensity * 0.1}) 0%, transparent 60%)`;
     }
 
     if (videoRef.current) {
@@ -187,13 +187,10 @@ export default function HeroVideo() {
       {/* ── Top Scrim (For Navbar visibility) ───────────────── */}
       <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black/20 to-transparent z-[6] pointer-events-none" />
 
-      {/* ── Intense Vignette Overlay (Donut Style) ─────────── */}
+      {/* ── Gradient Overlay ────────────────────────────────── */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 z-[5]"
-        style={{
-          background: 'radial-gradient(ellipse 110% 110% at center, transparent 15%, rgba(0,102,255,0.4) 45%, rgba(0,21,51,0.9) 75%, #001533 100%)'
-        }}
+        className="absolute inset-0 z-[5] bg-gradient-to-b from-[var(--bg)]/60 via-[var(--bg)]/30 to-[var(--bg)]"
       />
 
       {/* ── Spotlight & Glow (Controlled by RAF) ───────────── */}
@@ -211,16 +208,16 @@ export default function HeroVideo() {
       <div className="container relative z-20 h-full flex flex-col justify-center items-center text-center">
 
         <div ref={badgeRef} className="mb-8 scale-110">
-          <span className="px-4 py-1.5 rounded-full border border-white/20 bg-white/10 text-white text-[10px] font-bold tracking-[0.2em] uppercase backdrop-blur-md shadow-lg">
+          <span className="px-4 py-1.5 rounded-full border border-black/5 bg-white/90 text-slate-900 text-[10px] font-bold tracking-[0.2em] uppercase backdrop-blur-sm shadow-sm">
             lorem ipsum dolor sit amet
           </span>
         </div>
 
-        <h1 ref={h1Ref} className="heading-display mb-8 max-w-[15ch] text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.3)] !text-5xl md:!text-7xl lg:!text-8xl">
-          Lorem ipsum <span className="bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent drop-shadow-none"> dolor sit </span> amet
+        <h1 ref={h1Ref} className="heading-display mb-8 max-w-[15ch] text-[var(--black)] drop-shadow-sm !text-5xl md:!text-7xl lg:!text-8xl">
+          Lorem ipsum <span className="text-[var(--accent)]"> dolor sit </span> amet
         </h1>
 
-        <p ref={subRef} className="text-white/90 text-base md:text-xl max-w-[48ch] mb-12 font-medium leading-relaxed drop-shadow-md">
+        <p ref={subRef} className="text-slate-700 text-base md:text-xl max-w-[48ch] mb-12 font-medium leading-relaxed">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
         </p>
 
@@ -228,7 +225,7 @@ export default function HeroVideo() {
           <a href="#about" className="btn-primary">
             Lorem ipsum <span className="ml-2 inline-block animate-bounce">↓</span>
           </a>
-          <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="px-9 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white font-bold text-[11px] uppercase tracking-widest transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:-translate-y-1 shadow-lg">
+          <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="px-9 py-4 rounded-full border-2 border-[var(--black)]/10 bg-white/40 backdrop-blur-md text-[var(--black)] font-bold text-[11px] uppercase tracking-widest transition-all duration-300 hover:bg-white/80 hover:border-[var(--black)] hover:-translate-y-1">
             Lorem ipsum
           </a>
         </div>
@@ -242,7 +239,7 @@ export default function HeroVideo() {
         <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-zinc-400 [writing-mode:vertical-lr]">
           Scroll
         </span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-[#003399] to-transparent animate-pulse" />
+        <div className="w-[1px] h-12 bg-gradient-to-b from-[#0066ff] to-transparent animate-pulse" />
       </div>
 
       {/* ── Custom Scanline Keyframe ────────────────────────── */}
