@@ -38,7 +38,7 @@ const portfolioItems = [
     type: 'image',
     img: '/katalog-11/3.jpg',
     span: 'col-span-1 row-span-1',
-    description: 'Karya dari Katalog Byyvisco 11.',
+    description: 'Karya dari Katalog Byyvisco 11..',
     date: '2024',
     client: 'Byyvisco'
   },
