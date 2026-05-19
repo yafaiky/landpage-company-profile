@@ -134,7 +134,7 @@ export default function AboutSection() {
       {/* Subtle blue ambient blob */}
       <div
         className="absolute top-[-10%] right-[-5%] w-[420px] h-[420px] rounded-full pointer-events-none blur-[100px] opacity-[0.07]"
-        style={{ background: 'radial-gradient(circle, #0066ff 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, #003399 0%, transparent 70%)' }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -147,7 +147,7 @@ export default function AboutSection() {
             </p>
             <h2 ref={headRef} className="text-4xl md:text-6xl font-bold leading-[1.1] text-black mb-6">
               Lorem ipsum<br />
-              <span className="text-[#0066ff]">Lorem ipsum dolor sit amet consectetur.</span>
+              <span className="text-[#003399]">Lorem ipsum dolor sit amet consectetur.</span>
             </h2>
             <p ref={bodyRef} className="text-zinc-600 text-lg leading-relaxed max-w-[44ch]">
               Byvisco adalah creative agency berbasis di Jakarta Timur yang berfokus pada branding, visual identity, dan konten kreatif untuk UMKM dan bisnis lokal.
@@ -157,7 +157,7 @@ export default function AboutSection() {
               {!isExpanded && (
                 <button
                   onClick={() => setIsExpanded(true)}
-                  className="md:hidden text-[#0066ff] font-semibold ml-1 hover:text-[#0052cc] transition-colors"
+                  className="md:hidden text-[#003399] font-semibold ml-1 hover:text-[#002673] transition-colors"
                 >
                   ... Baca Selengkapnya
                 </button>
@@ -171,12 +171,12 @@ export default function AboutSection() {
               <div
                 key={s.lbl}
                 ref={el => statsRef.current[i] = el}
-                className="p-6 bg-white group/stat hover:bg-[#0066ff]/5 transition-colors duration-300 relative"
+                className="p-6 bg-white group/stat hover:bg-[#003399]/5 transition-colors duration-300 relative"
               >
-                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#0066ff] to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#003399] to-transparent opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300" />
                 <div
                   ref={el => statNumRef.current[i] = el}
-                  className="text-3xl font-extrabold text-[#0066ff] tracking-tight leading-none"
+                  className="text-3xl font-extrabold text-[#003399] tracking-tight leading-none"
                 >
                   0{s.suffix}
                 </div>
@@ -191,7 +191,7 @@ export default function AboutSection() {
         {/* ── Divider ─────────────────────────────────────────── */}
         <div
           ref={dividerRef}
-          className="h-[1px] w-full bg-gradient-to-r from-[#0066ff] to-transparent opacity-20 mb-20"
+          className="h-[1px] w-full bg-gradient-to-r from-[#003399] to-transparent opacity-20 mb-20"
         />
 
         {/* ── Services grid ───────────────────────────────────── */}
@@ -244,7 +244,7 @@ export default function AboutSection() {
               ref={el => vmRef.current[i] = el}
               className="relative pl-8 group/vm"
             >
-              <div className="absolute left-0 top-0 w-[2px] h-[30%] bg-[#0066ff] opacity-20 group-hover/vm:h-full group-hover/vm:opacity-100 transition-all duration-500" />
+              <div className="absolute left-0 top-0 w-[2px] h-[30%] bg-[#003399] opacity-20 group-hover/vm:h-full group-hover/vm:opacity-100 transition-all duration-500" />
               <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold block mb-4">
                 {item.title}
               </span>
